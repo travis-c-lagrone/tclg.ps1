@@ -44,8 +44,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     PrivateData = @{
         PSData = @{
             # Tags = @()
-            # LicenseUri = ''
-            # ProjectUri = ''
+            LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
+            ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
             # IconUri = ''
             # ReleaseNotes = ''
             # Prerelease = ''
