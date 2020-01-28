@@ -1,7 +1,6 @@
 @{
-    RootModule = 'Tclg.psd1'
+    RootModule = 'Tclg.psm1'
     ModuleVersion = '0.0.1'
-    CompatiblePSEditions = @('Core')
 
     GUID = '927604ec-8b1d-4f98-8353-1469171e44cd'
     Author = 'Travis C. LaGrone'
@@ -16,26 +15,31 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 '@
     Description = 'Utilities, helpers, sugar, etc. for Travis C. LaGrone'
 
-    # PowerShellVersion = ''
+    CompatiblePSEditions = @('Core')
+    PowerShellVersion = '6.2'
+
     # PowerShellHostName = ''
     # PowerShellHostVersion = ''
 
-    # RequiredModules = @()
-    # RequiredAssemblies = @()
-    # ScriptsToProcess = @()
-    # TypesToProcess = @()
-    # FormatsToProcess = @()
+    RequiredModules = @()
+    RequiredAssemblies = @()
+    ScriptsToProcess = @()
+    TypesToProcess = @()
+    FormatsToProcess = @()
 
-    # NestedModules = @()
+    NestedModules = @('Tclg.psm1')
 
     FunctionsToExport = @()
     CmdletsToExport = @()
-    VariablesToExport = '*'
+    VariablesToExport = @()
     AliasesToExport = @()
-    # DscResourcesToExport = @()
+    DscResourcesToExport = @()
 
-    # ModuleList = @()
-    # FileList = @()
+    ModuleList = @()
+    FileList = @(
+        'Tclg.psd1'
+        'Tclg.psm1'
+    )
 
     PrivateData = @{
         PSData = @{
