@@ -30,10 +30,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     FunctionsToExport = @(
         'Get-Noun'
+        'Rename-Variable'
+        'Test-Variable'
+    )
+    AliasesToExport = @(
+        'rnv'  # Rename-Variable
+        'tv'  # Test-Variable
     )
     CmdletsToExport = @()
     VariablesToExport = @()
-    AliasesToExport = @()
     DscResourcesToExport = @()
 
     ModuleList = @()
