@@ -18,14 +18,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     RequiredModules = @()
     RequiredAssemblies = @()
 
-    ScriptsToProcess = @()
-    TypesToProcess = @()
+    ScriptsToProcess = @(
+        'Noun/NounInfo.ps1'
+    )
+    TypesToProcess = @(
+        'Noun/NounInfo.type.ps1xml'
+    )
     FormatsToProcess = @()
 
     NestedModules = @()
 
     FunctionsToExport = @(
-        'Noun/Get-Noun.ps1'
+        'Get-Noun'
     )
     CmdletsToExport = @()
     VariablesToExport = @()

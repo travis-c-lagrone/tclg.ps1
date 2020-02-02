@@ -10,6 +10,12 @@ function Get-Noun {
 
         [Parameter()]
         [SupportsWildcards()]
+        [ArgumentCompleter({
+            param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParammeters)
+            foreach ($name in (Get-Module ($wordToComplete + '*') -ListAvailable).Name) {
+                [System.Management.Automation.CompletionResult]::new($name, $name, 'ParameterValue', $name)
+            }
+        })]
         [string[]]
         [ValidateNotNullOrEmpty()]
         $Module
