@@ -24,7 +24,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     NestedModules = @()
 
-    FunctionsToExport = @()
+    FunctionsToExport = @(
+        'Noun/Get-Noun.ps1'
+    )
     CmdletsToExport = @()
     VariablesToExport = @()
     AliasesToExport = @()
@@ -35,7 +37,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            # Tags = @()
+            Tags = @('noun')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
