@@ -78,4 +78,4 @@ function Lock-Item {
     }
 }
 
-Set-Alias -Name 'lock' -Value 'Lock-Item'
+Set-Alias -Name 'lki' -Value 'Lock-Item'

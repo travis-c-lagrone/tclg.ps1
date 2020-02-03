@@ -31,10 +31,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         'Unlock-Item'
     )
     AliasesToExport = @(
-        'hide'  # Hide-Item
-        'lock'  # Lock-Item
-        'show'  # Show-Item
-        'unlock'  # Unlock-Item
+        'hi'  # Hide-Item
+        'lki'  # Lock-Item
+        'shi'  # Show-Item
+        'uki'  # Unlock-Item
     )
     CmdletsToExport = @()
     VariablesToExport = @()

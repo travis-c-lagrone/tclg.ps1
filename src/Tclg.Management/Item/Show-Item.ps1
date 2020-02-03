@@ -73,4 +73,4 @@ function Show-Item {
     }
 }
 
-Set-Alias -Name 'show' -Value 'Show-Item'
+Set-Alias -Name 'shi' -Value 'Show-Item'

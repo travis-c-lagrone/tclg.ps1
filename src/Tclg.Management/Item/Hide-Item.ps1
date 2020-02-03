@@ -78,4 +78,4 @@ function Hide-Item {
     }
 }
 
-Set-Alias -Name 'hide' -Value 'Hide-Item'
+Set-Alias -Name 'hi' -Value 'Hide-Item'

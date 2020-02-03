@@ -73,4 +73,4 @@ function Unlock-Item {
     }
 }
 
-Set-Alias -Name 'unlock' -Value 'Unlock-Item'
+Set-Alias -Name 'uki' -Value 'Unlock-Item'
