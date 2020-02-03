@@ -24,8 +24,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     NestedModules = @()
 
-    FunctionsToExport = @()
-    AliasesToExport = @()
+    FunctionsToExport = @(
+        'Hide-Item'
+    )
+    AliasesToExport = @(
+        'hide'  # Hide-Item
+    )
     CmdletsToExport = @()
     VariablesToExport = @()
     DscResourcesToExport = @()
