@@ -28,11 +28,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         'Hide-Item'
         'Lock-Item'
         'Show-Item'
+        'Unlock-Item'
     )
     AliasesToExport = @(
         'hide'  # Hide-Item
         'lock'  # Lock-Item
         'show'  # Show-Item
+        'unlock'  # Unlock-Item
     )
     CmdletsToExport = @()
     VariablesToExport = @()
