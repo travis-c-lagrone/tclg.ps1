@@ -1,4 +1,5 @@
 $sources = @(
+    'Alias/Rename-Alias.ps1'
     'Noun/Get-Noun.ps1'
     'Variable/Rename-Variable.ps1'
     'Variable/Test-Variable.ps1'

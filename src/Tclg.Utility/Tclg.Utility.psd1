@@ -29,11 +29,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     NestedModules = @()
 
     FunctionsToExport = @(
+        'Rename-Alias'
         'Get-Noun'
         'Rename-Variable'
         'Test-Variable'
     )
     AliasesToExport = @(
+        'rnal'  # Rename-Alias
         'rnv'  # Rename-Variable
         'tv'  # Test-Variable
     )
