@@ -26,10 +26,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     FunctionsToExport = @(
         'Hide-Item'
+        'Lock-Item'
         'Show-Item'
     )
     AliasesToExport = @(
         'hide'  # Hide-Item
+        'lock'  # Lock-Item
         'show'  # Show-Item
     )
     CmdletsToExport = @()

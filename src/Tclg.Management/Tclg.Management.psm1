@@ -1,5 +1,6 @@
 $sources = @(
     'Item/Hide-Item.ps1'
+    'Item/Lock-Item.ps1'
     'Item/Show-Item.ps1'
 )
 
