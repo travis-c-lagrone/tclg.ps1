@@ -30,12 +30,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     FunctionsToExport = @(
         'Rename-Alias'
+        'Test-Alias'
         'Get-Noun'
         'Rename-Variable'
         'Test-Variable'
     )
     AliasesToExport = @(
         'rnal'  # Rename-Alias
+        'tal'  # Test-Alias
         'rnv'  # Rename-Variable
         'tv'  # Test-Variable
     )
@@ -48,7 +50,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('noun')
+            Tags = @('alias', 'noun', 'variable')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
