@@ -1,5 +1,7 @@
 $sources = @(
+    'FileAttributes/Merge-FileAttributes.ps1'
     'FileAttributes/New-FileAttributes.ps1'
+    'FileAttributes/Split-FileAttributes.ps1'
     'FileAttributes/Test-FileAttributes.ps1'
 
     'Item/Hide-Item.ps1'

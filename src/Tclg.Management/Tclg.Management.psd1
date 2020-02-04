@@ -25,7 +25,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     NestedModules = @()
 
     FunctionsToExport = @(
+        'Merge-FileAttributes'
         'New-FileAttributes'
+        'Split-FileAttributes'
         'Test-FileAttributes'
 
         'Hide-Item'
