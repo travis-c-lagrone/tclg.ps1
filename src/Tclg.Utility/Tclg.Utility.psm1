@@ -11,9 +11,6 @@ $sources = @(
     'Function/Set-Function.ps1'
     'Function/Test-Function.ps1'
 
-    'Html/Decode-Html.ps1'
-    'Html/Encode-Html.ps1'
-
     'Noun/Get-Noun.ps1'
 
     'Variable/Rename-Variable.ps1'

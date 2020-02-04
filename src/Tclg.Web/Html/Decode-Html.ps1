@@ -1,23 +1,23 @@
-function Encode-Html {
+function Decode-Html {
     <#
     .SYNOPSIS
-        HTML-encodes the input string(s).
+        HTML-decodes the input HTML string(s).
 
-    .PARAMETER Value
-        The string(s) to HTML-encode.
+    .PARAMETER Html
+        The HTML string(s) to HTML-decode.
 
     .INPUTS
         string
-            The string(s) to HTML-encode.
+            The HTML string(s) to HTML-decode.
 
     .OUTPUTS
         string
-            The HTML-encoding of the input string(s).
+            The HTML-decoding of the input HTML string(s).
     #>
     [CmdletBinding(PositionalBinding=$false, SupportsShouldProcess)]
-    [Output([string])]
+    [OutputType([string])]
     param(
-        # The string(s) to HTML-encode.
+        # The HTML string(s) to HTML-decode.
         [Parameter(Mandatory, Position=0, ValueFromPipeline)]
         [string[]]
         $Value
@@ -25,7 +25,7 @@ function Encode-Html {
     process {
         foreach ($string in $Value) {
             try {
-                [System.Web.HttpUtility]::HtmlEncode($string)
+                [System.Web.HttpUtility]::HtmlDecode($string)
             } catch {
                 Write-Error -Exception $_
                 continue

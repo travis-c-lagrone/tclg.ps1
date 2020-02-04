@@ -1,7 +1,7 @@
 @{
-    RootModule = 'Tclg.Utility.psm1'
+    RootModule = 'Tclg.Web.psm1'
     ModuleVersion = '0.0.1'
-    GUID = '376a69b5-06ba-467d-87ac-931892f53fcf'
+    GUID = '4d5f2569-bd4d-4823-b0df-fa4a98bbe696'
     Author = 'Travis C. LaGrone'
     Copyright = @'
 Copyright 2020 Travis C. LaGrone
@@ -18,50 +18,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     RequiredModules = @()
     RequiredAssemblies = @()
 
-    ScriptsToProcess = @(
-        'Noun/NounInfo.ps1'
-    )
-    TypesToProcess = @(
-        'Noun/NounInfo.type.ps1xml'
-    )
+    ScriptsToProcess = @()
+    TypesToProcess = @()
     FormatsToProcess = @()
 
     NestedModules = @()
 
     FunctionsToExport = @(
-        'Rename-Alias'
-        'Test-Alias'
-
-        'Export-Function'
-        'Get-Function'
-        'Import-Function'
-        'New-Function'
-        'Remove-Function'
-        'Rename-Function'
-        'Set-Function'
-        'Test-Function'
-
-        'Get-Noun'
-
-        'Rename-Variable'
-        'Test-Variable'
+        'Decode-Html'
+        'Encode-Html'
     )
-    AliasesToExport = @(
-        'rnal'  # Rename-Alias
-        'tal'   # Test-Alias
-
-        'epf'  # Export-Function
-        'gf'   # Get-Function
-        'ipf'  # Import-Function
-        'nf'   # New-Function
-        'rf'   # Remove-Function
-        'rnf'  # Rename-Function
-        'sf'   # Set-Function
-        'tf'   # Test-Function
-
-        'rnv'  # Rename-Variable
-        'tv'   # Test-Variable
-    )
+    AliasesToExport = @()
     CmdletsToExport = @()
     VariablesToExport = @()
     DscResourcesToExport = @()
@@ -71,7 +38,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('alias', 'function', 'noun', 'variable')
+            Tags = @('html', 'web')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
