@@ -27,6 +27,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     FunctionsToExport = @(
         'Decode-Html'
         'Encode-Html'
+
+        'Decode-Url'
+        'Encode-Url'
+
+        'ConvertFrom-UrlQuery'
     )
     AliasesToExport = @()
     CmdletsToExport = @()
@@ -38,7 +43,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('html', 'web')
+            Tags = @('html', 'query', 'url', 'web')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
