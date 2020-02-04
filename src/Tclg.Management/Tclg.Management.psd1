@@ -25,6 +25,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     NestedModules = @()
 
     FunctionsToExport = @(
+        'New-FileAttributes'
+
         'Hide-Item'
         'Lock-Item'
         'Protect-Item'
