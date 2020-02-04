@@ -27,14 +27,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     FunctionsToExport = @(
         'Hide-Item'
         'Lock-Item'
+        'Protect-Item'
         'Show-Item'
         'Unlock-Item'
+        'Unprotect-Item'
     )
     AliasesToExport = @(
         'hi'  # Hide-Item
         'lki'  # Lock-Item
+        'pti'  # Protect-Item
         'shi'  # Show-Item
         'uki'  # Unlock-Item
+        'upi'  # Unprotect-Item
     )
     CmdletsToExport = @()
     VariablesToExport = @()
