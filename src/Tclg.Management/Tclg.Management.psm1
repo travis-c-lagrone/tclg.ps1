@@ -1,5 +1,6 @@
 $sources = @(
     'FileAttributes/New-FileAttributes.ps1'
+    'FileAttributes/Test-FileAttributes.ps1'
 
     'Item/Hide-Item.ps1'
     'Item/Lock-Item.ps1'

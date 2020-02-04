@@ -26,6 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     FunctionsToExport = @(
         'New-FileAttributes'
+        'Test-FileAttributes'
 
         'Hide-Item'
         'Lock-Item'
@@ -51,7 +52,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @()
+            Tags = @('file', 'attributes', 'FileAttributes', 'item', 'management', 'ReadOnly', 'Hidden', 'Encrypted')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
