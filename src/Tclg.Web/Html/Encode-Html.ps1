@@ -19,13 +19,14 @@ function Encode-Html {
     param(
         # The string(s) to HTML-encode.
         [Parameter(Mandatory, Position=0, ValueFromPipeline)]
+        [ValidateNotNull()]
         [string[]]
         $Value
     )
     process {
-        foreach ($string in $Value) {
+        foreach ($rawString in $Value) {
             try {
-                [System.Web.HttpUtility]::HtmlEncode($string)
+                [System.Web.HttpUtility]::HtmlEncode($rawString)
             } catch {
                 Write-Error -Exception $_
                 continue

@@ -19,13 +19,14 @@ function Decode-Html {
     param(
         # The HTML string(s) to HTML-decode.
         [Parameter(Mandatory, Position=0, ValueFromPipeline)]
+        [ValidateNotNull()]
         [string[]]
-        $Value
+        $Html
     )
     process {
-        foreach ($string in $Value) {
+        foreach ($encodedString in $Html) {
             try {
-                [System.Web.HttpUtility]::HtmlDecode($string)
+                [System.Web.HttpUtility]::HtmlDecode($encodedString)
             } catch {
                 Write-Error -Exception $_
                 continue

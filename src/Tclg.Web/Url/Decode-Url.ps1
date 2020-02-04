@@ -3,7 +3,7 @@ function Decode-Url {
     .SYNOPSIS
         Decodes the input encoded URL(s).
 
-    .PARAMETER Html
+    .PARAMETER Url
         The encoded URL(s) to decode.
 
     .INPUTS
@@ -19,13 +19,14 @@ function Decode-Url {
     param(
         # The encoded URL(s) to decode.
         [Parameter(Mandatory, Position=0, ValueFromPipeline)]
+        [ValidateNotNull()]
         [string[]]
-        $Value
+        $Url
     )
     process {
-        foreach ($string in $Value) {
+        foreach ($encodedString in $Url) {
             try {
-                [System.Web.HttpUtility]::UrlDecode($string)
+                [System.Web.HttpUtility]::UrlDecode($encodedString)
             } catch {
                 Write-Error -Exception $_
                 continue
