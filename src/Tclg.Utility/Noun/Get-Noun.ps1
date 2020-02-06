@@ -1,6 +1,6 @@
 function Get-Noun {
     [CmdletBinding(PositionalBinding=$false)]
-    [OutputType([NounInfo])]
+    [OutputType('NounInfo')]
     param(
         [Parameter(Position=0)]
         [SupportsWildcards()]

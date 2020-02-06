@@ -12,6 +12,7 @@ $sources = @(
     'Function/Test-Function.ps1'
 
     'Noun/Get-Noun.ps1'
+    'Noun/NounInfo.ps1'
 
     'Variable/Rename-Variable.ps1'
     'Variable/Test-Variable.ps1'

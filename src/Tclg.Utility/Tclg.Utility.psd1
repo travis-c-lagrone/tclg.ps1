@@ -18,11 +18,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     RequiredModules = @()
     RequiredAssemblies = @()
 
-    ScriptsToProcess = @(
-        'Noun/NounInfo.ps1'
-    )
+    ScriptsToProcess = @()
     TypesToProcess = @(
         'Noun/NounInfo.type.ps1xml'
+        'String/String.type.ps1xml'
     )
     FormatsToProcess = @()
 
@@ -71,7 +70,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('alias', 'function', 'noun', 'variable')
+            Tags = @('alias', 'function', 'noun', 'string', 'variable')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
