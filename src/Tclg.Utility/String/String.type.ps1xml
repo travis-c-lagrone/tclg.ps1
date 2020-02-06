@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+  <Type>
+    <Name>System.String</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>RemoveEnd</Name>
+        <Script>
+          param([int] $length, [bool] $strict = $false)
+          if ($length -lt 0) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
+            } else {
+              $length = 0
+            }
+          }
+          if ($length -gt $this.Length) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
+            } else {
+              $length = $this.Length
+            }
+          }
+          return $this.Substring(0, $this.Length - $length)
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>RemoveStart</Name>
+        <Script>
+          param([int] $length, [bool] $strict = $false)
+          if ($length -lt 0) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
+            } else {
+              $length = 0
+            }
+          }
+          if ($length -gt $this.Length) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
+            } else {
+              $length = $this.Length
+            }
+          }
+          return $this.Substring($length)
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>SubstringEnd</Name>
+        <Script>
+          param([int] $length, [bool] $strict = $false)
+          if ($length -lt 0) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
+            } else {
+              $length = 0
+            }
+          }
+          if ($length -gt $this.Length) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
+            } else {
+              $length = $this.Length
+            }
+          }
+          return $this.Substring($this.Length - $length)
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>SubstringStart</Name>
+        <Script>
+          param([int] $length, [bool] $strict = $false)
+          if ($length -lt 0) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
+            } else {
+              $length = 0
+            }
+          }
+          if ($length -gt $this.Length) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
+            } else {
+              $length = $this.Length
+            }
+          }
+          return $this.Substring(0, $length)
+        </Script>
+      </ScriptMethod>
+    </Members>
+  </Type>
+</Types>
