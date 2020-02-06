@@ -6,6 +6,7 @@
       <ScriptMethod>
         <Name>RemoveEnd</Name>
         <Script>
+          [OutputType([string])]
           param([int] $length, [bool] $strict = $false)
           if ($length -lt 0) {
             if ($strict) {
@@ -27,6 +28,7 @@
       <ScriptMethod>
         <Name>RemoveStart</Name>
         <Script>
+          [OutputType([string])]
           param([int] $length, [bool] $strict = $false)
           if ($length -lt 0) {
             if ($strict) {
@@ -48,6 +50,7 @@
       <ScriptMethod>
         <Name>SubstringEnd</Name>
         <Script>
+          [OutputType([string])]
           param([int] $length, [bool] $strict = $false)
           if ($length -lt 0) {
             if ($strict) {
@@ -69,6 +72,7 @@
       <ScriptMethod>
         <Name>SubstringStart</Name>
         <Script>
+          [OutputType([string])]
           param([int] $length, [bool] $strict = $false)
           if ($length -lt 0) {
             if ($strict) {
