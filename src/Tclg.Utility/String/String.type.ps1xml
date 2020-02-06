@@ -4,6 +4,22 @@
     <Name>System.String</Name>
     <Members>
       <ScriptMethod>
+        <Name>InsertEnd</Name>
+        <Script>
+          [OutputType([string])]
+          param([string] $value)
+          return $this.Insert($this.Length, $value)
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>InsertStart</Name>
+        <Script>
+          [OutputType([string])]
+          param([string] $value)
+          return $this.Insert(0, $value)
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
         <Name>RemoveEnd</Name>
         <Script>
           [OutputType([string])]
