@@ -59,7 +59,7 @@ function Protect-Item {
     process {
         $splat = @{}
         foreach ($key in @('Path', 'LiteralPath', 'Filter', 'Include', 'Exclude', 'Credential', 'Force')) {
-            if ($MyInvocation.BoundParameters.Contains($key)) {
+            if ($MyInvocation.BoundParameters.ContainsKey($key)) {
                 $splat[$key] = $MyInvocation.BoundParameters[$key]
             }
         }
