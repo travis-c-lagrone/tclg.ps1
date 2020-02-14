@@ -20,29 +20,7 @@
         </Script>
       </ScriptMethod>
       <ScriptMethod>
-        <Name>RemoveEnd</Name>
-        <Script>
-          [OutputType([string])]
-          param([int] $length, [bool] $strict = $false)
-          if ($length -lt 0) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
-            } else {
-              $length = 0
-            }
-          }
-          if ($length -gt $this.Length) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
-            } else {
-              $length = $this.Length
-            }
-          }
-          return $this.Substring(0, $this.Length - $length)
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>RemoveStart</Name>
+        <Name>RemoveFirst</Name>
         <Script>
           [OutputType([string])]
           param([int] $length, [bool] $strict = $false)
@@ -64,7 +42,7 @@
         </Script>
       </ScriptMethod>
       <ScriptMethod>
-        <Name>SubstringEnd</Name>
+        <Name>RemoveLast</Name>
         <Script>
           [OutputType([string])]
           param([int] $length, [bool] $strict = $false)
@@ -82,11 +60,11 @@
               $length = $this.Length
             }
           }
-          return $this.Substring($this.Length - $length)
+          return $this.Substring(0, $this.Length - $length)
         </Script>
       </ScriptMethod>
       <ScriptMethod>
-        <Name>SubstringStart</Name>
+        <Name>SubstringFirst</Name>
         <Script>
           [OutputType([string])]
           param([int] $length, [bool] $strict = $false)
@@ -105,6 +83,28 @@
             }
           }
           return $this.Substring(0, $length)
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>SubstringLast</Name>
+        <Script>
+          [OutputType([string])]
+          param([int] $length, [bool] $strict = $false)
+          if ($length -lt 0) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
+            } else {
+              $length = 0
+            }
+          }
+          if ($length -gt $this.Length) {
+            if ($strict) {
+              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
+            } else {
+              $length = $this.Length
+            }
+          }
+          return $this.Substring($this.Length - $length)
         </Script>
       </ScriptMethod>
     </Members>
