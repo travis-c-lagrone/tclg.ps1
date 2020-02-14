@@ -14,6 +14,8 @@ $sources = @(
     'Noun/Get-Noun.ps1'
     'Noun/NounInfo.ps1'
 
+    'RegexOptions/New-RegexOptions.ps1'
+
     'Variable/Rename-Variable.ps1'
     'Variable/Test-Variable.ps1'
 )
