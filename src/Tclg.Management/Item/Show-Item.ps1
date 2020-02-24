@@ -45,13 +45,13 @@ function Show-Item {
     )
     process {
         $splat = @{}
-        foreach ($key in @('Path', 'LiteralPath', 'Filter', 'Include', 'Exclude', 'Credential', 'Force')) {
+        foreach ($key in @('Path', 'LiteralPath', 'Filter', 'Include', 'Exclude', 'Credential')) {
             if ($MyInvocation.BoundParameters.ContainsKey($key)) {
                 $splat[$key] = $MyInvocation.BoundParameters[$key]
             }
         }
 
-        $items = Get-Item @splat
+        $items = Get-Item @splat -Force
         foreach ($item in $items) {
             try {
                 if ((-bnot $item.Attributes) -band [System.IO.FileAttributes]::Hidden) {
