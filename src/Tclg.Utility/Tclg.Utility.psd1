@@ -20,6 +20,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     ScriptsToProcess = @()
     TypesToProcess = @(
+        'Hashtable/Hashtable.type.ps1xml'
         'Noun/NounInfo.type.ps1xml'
         'String/String.type.ps1xml'
     )
@@ -72,7 +73,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('Alias', 'Function', 'Noun', 'RegexOptions', 'String', 'Variable')
+            Tags = @('Alias', 'Collections', 'Function', 'Hashtable', 'Noun', 'RegexOptions', 'String', 'Variable')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'

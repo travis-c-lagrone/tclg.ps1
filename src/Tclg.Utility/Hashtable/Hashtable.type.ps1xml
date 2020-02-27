@@ -1,0 +1,129 @@
+<Types>
+  <Type>
+    <Name>System.Collections.Hashtable</Name>
+    <Members>
+      <ScriptMethod>
+        <Name>AddRange</Name>
+        <Script>
+          [OutputType()]
+          param([hashtable] $other)
+          
+          if ($other) {
+            foreach ($key in $other.Keys) {
+              if ($this.ContainsKey($key)) {
+                throw "Key is already present in dictionary: '$key'"
+              }
+            }
+            foreach ($key in $other.Keys) {
+              $this[$key] = $other[$key]
+            }
+          }
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>Except</Name>
+        <Script>
+          [OutputType([hashtable])]
+          param([hashtable] $other)
+
+          $new = @{}
+          if ($other) {
+            foreach ($key in $this.Keys) {
+              if (-not $other.ContainsKey($key)) {
+                  $new[$key] = $this[$key]
+              }
+            }
+          }
+          return $new
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>Intersect</Name>
+        <Script>
+          [OutputType([hashtable])]
+          param([hashtable] $other)
+
+          $new = @{}
+          if ($other) {
+            foreach ($key in $this.Keys) {
+              if ($other.ContainsKey($key)) {
+                $new[$key] = $this[$key]
+              }
+            }
+          }
+          return $new
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>SetRange</Name>
+        <Script>
+          [OutputType()]
+          param([hashtable] $other)
+          
+          if ($other) {
+            foreach ($key in $other.Keys) {
+              $this[$key] = $other[$key]
+            }
+          }
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>SymmetricExcept</Name>
+        <Script>
+          [OutputType([hashtable])]
+          param([hashtable] $other)
+
+          $new = @{}
+          if ($other) {
+            foreach ($key in $this.Keys) {
+              if (-not $other.ContainsKey($key)) {
+                $new[$key] = $this[$key]
+              }
+            }
+            foreach ($key in $other.Keys) {
+              if (-not $this.ContainsKey($key)) {
+                $new[$key] = $other[$key]
+              }
+            }
+          }
+          return $new
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>TryAddRange</Name>
+        <Script>
+          [OutputType()]
+          param([hashtable] $other)
+          
+          if ($other) {
+            foreach ($key in $other.Keys) {
+              if (-not $this.ContainsKey($key)) {
+                $this[$key] = $other[$key]
+              }
+            }
+          }
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>Union</Name>
+        <Script>
+          [OutputType([hashtable])]
+          param([hashtable] $other)
+
+          $new = @{}
+          foreach ($key in $this.Keys) {
+            $new[$key] = $this[$key]
+          }
+          if ($other) {
+            foreach ($key in $other.Keys) {
+              if (-not $this.ContainsKey($key)) {
+                $new[$key] = $other[$key]
+              }
+            }
+          }
+          return $new
+        </Script>
+      </ScriptMethod>
+    </Members>
+  </Type>
+</Types>
