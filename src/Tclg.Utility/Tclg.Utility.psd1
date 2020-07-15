@@ -45,6 +45,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
         'New-RegexOptions'
 
+        'New-Set'
+        'Out-Set'
+
         'Rename-Variable'
         'Test-Variable'
     )
@@ -61,6 +64,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         'sf'   # Set-Function
         'tf'   # Test-Function
 
+        'nset' # New-Set
+        'oset' # Out-Set
+
         'rnv'  # Rename-Variable
         'tv'   # Test-Variable
     )
@@ -73,7 +79,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('Alias', 'Collections', 'Function', 'Hashtable', 'Noun', 'RegexOptions', 'String', 'Variable')
+            Tags = @('Alias', 'Collections', 'Function', 'Hashtable', 'Noun', 'RegexOptions', 'Set', 'String', 'Variable')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
