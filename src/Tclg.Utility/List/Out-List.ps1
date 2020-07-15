@@ -5,7 +5,11 @@ function Out-List {
         [Parameter()]
         [ValidateRange('NonNegative')]
         [int]
-        $Size
+        $Size,
+
+        [Parameter(ValueFromPipeline)]
+        [object]
+        $InputObject
     )
     begin {
         $list =
@@ -16,7 +20,7 @@ function Out-List {
             }
     }
     process {
-        $list.Add($_)
+        $list.Add($InputObject)
     }
     end {
         $list

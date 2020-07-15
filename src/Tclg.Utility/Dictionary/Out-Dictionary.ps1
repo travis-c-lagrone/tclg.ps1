@@ -11,7 +11,7 @@ function Out-Dictionary {
         [Parameter(ParameterSetName='KeyScript_ValueProperty', Mandatory, Position=0)]
         [Parameter(ParameterSetName='KeyScript_ValueScript', Mandatory, Position=0)]
         [ValidateNotNull()]
-        [scriptblock]
+        [ScriptBlock]
         $KeyScript,
 
         [Parameter(ParameterSetName='KeyProperty_ValueProperty', Mandatory, Position=1)]
@@ -23,13 +23,17 @@ function Out-Dictionary {
         [Parameter(ParameterSetName='KeyProperty_ValueScript', Mandatory, Position=1)]
         [Parameter(ParameterSetName='KeyScript_ValueScript', Mandatory, Position=1)]
         [ValidateNotNull()]
-        [scriptblock]
+        [ScriptBlock]
         $ValueScript,
 
         [Parameter()]
         [ValidateRange('NonNegative')]
         [int]
-        $Size
+        $Size,
+
+        [Parameter(ValueFromPipeline)]
+        [PSObject]
+        $InputObject
     )
     begin {
         $dictionary =
@@ -42,20 +46,20 @@ function Out-Dictionary {
     process {
         switch ($PSCmdlet.ParameterSetName) {
             'KeyProperty_ValueProperty' {
-                $dictionary[$_.$KeyProperty] = $_.$ValueProperty
+                $dictionary[$InputObject.$KeyProperty] = $InputObject.$ValueProperty
                 break
             }
             'KeyProperty_ValueScript' {
-                $dictionary[$_.$KeyProperty] = $ValueScript.Invoke($_)
+                $dictionary[$InputObject.$KeyProperty] = $ValueScript.Invoke($InputObject)
             }
             'KeyScript_ValueProperty' {
-                $dictionary[$KeyScript.Invoke($_)] = $_.$ValueProperty
+                $dictionary[$KeyScript.Invoke($InputObject)] = $InputObject.$ValueProperty
             }
             'KeyScript_ValueScript' {
-                $dictionary[$KeyScript.Invoke($_)] = $ValueScript.Invoke($_)
+                $dictionary[$KeyScript.Invoke($InputObject)] = $ValueScript.Invoke($InputObject)
             }
             default {
-                $dictionary[$_.Key] = $_.Value
+                $dictionary[$InputObject.Key] = $InputObject.Value
             }
         }
     }

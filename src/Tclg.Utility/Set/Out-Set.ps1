@@ -5,7 +5,11 @@ function Out-Set {
         [Parameter()]
         [ValidateRange('NonNegative')]
         [int]
-        $Size
+        $Size,
+
+        [Parameter(ValueFromPipeline)]
+        [object]
+        $InputObject
     )
     begin {
         $set =
@@ -16,7 +20,7 @@ function Out-Set {
             }
     }
     process {
-        $set.Add($_)
+        $set.Add($InputObject)
     }
     end {
         $set
