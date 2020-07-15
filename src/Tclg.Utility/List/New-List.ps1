@@ -13,13 +13,13 @@ function New-List {
     )
 
     if ($PSBoundParameters.ContainsKey('Collection')) {
-        [System.Collections.Generic.List[object]]::new($Collection)
+        , [System.Collections.Generic.List[object]]::new($Collection)
     }
     elseif ($PSBoundParameters.ContainsKey('Size')) {
-        [System.Collections.Generic.List[object]]::new($Size)
+        , [System.Collections.Generic.List[object]]::new($Size)
     }
     else {
-        [System.Collections.Generic.List[object]]::new()
+        , [System.Collections.Generic.List[object]]::new()
     }
 }
 

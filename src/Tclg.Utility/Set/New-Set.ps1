@@ -13,13 +13,13 @@ function New-Set {
     )
 
     if ($PSBoundParameters.ContainsKey('Collection')) {
-        [System.Collections.Generic.HashSet[object]]::new($Collection)
+        , [System.Collections.Generic.HashSet[object]]::new($Collection)
     }
     elseif ($PSBoundParameters.ContainsKey('Size')) {
-        [System.Collections.Generic.HashSet[object]]::new($Size)
+        , [System.Collections.Generic.HashSet[object]]::new($Size)
     }
     else {
-        [System.Collections.Generic.HashSet[object]]::new()
+        , [System.Collections.Generic.HashSet[object]]::new()
     }
 }
 

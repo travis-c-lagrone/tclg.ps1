@@ -14,16 +14,16 @@ function Out-List {
     begin {
         $list =
             if ($PSBoundParameters.ContainsKey('Size')) {
-                [System.Collections.Generic.List[object]]::new($Size)
+                , [System.Collections.Generic.List[object]]::new($Size)
             } else {
-                [System.Collections.Generic.List[object]]::new()
+                , [System.Collections.Generic.List[object]]::new()
             }
     }
     process {
-        $list.Add($InputObject)
+        [void] $list.Add($InputObject)
     }
     end {
-        $list
+        , $list
     }
 }
 

@@ -14,16 +14,16 @@ function Out-Set {
     begin {
         $set =
             if ($PSBoundParameters.ContainsKey('Size')) {
-                [System.Collections.Generic.HashSet[object]]::new($Size)
+                , [System.Collections.Generic.HashSet[object]]::new($Size)
             } else {
-                [System.Collections.Generic.HashSet[object]]::new()
+                , [System.Collections.Generic.HashSet[object]]::new()
             }
     }
     process {
-        $set.Add($InputObject)
+        [void] $set.Add($InputObject)
     }
     end {
-        $set
+        , $set
     }
 }
 
