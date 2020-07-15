@@ -12,10 +12,10 @@ function New-Dictionary {
         $Size
     )
 
-    if ($PSBoundParameters.Contains('Dictionary')) {
+    if ($PSBoundParameters.ContainsKey('Dictionary')) {
         [System.Collections.Generic.Dictionary[object, object]]::new($Dictionary)
     }
-    elseif ($PSBoundParameters.Contains('Size')) {
+    elseif ($PSBoundParameters.ContainsKey('Size')) {
         [System.Collections.Generic.Dictionary[object, object]]::new($Size)
     }
     else {

@@ -12,10 +12,10 @@ function New-List {
         $Size
     )
 
-    if ($PSBoundParameters.Contains('Collection')) {
+    if ($PSBoundParameters.ContainsKey('Collection')) {
         [System.Collections.Generic.List[object]]::new($Collection)
     }
-    elseif ($PSBoundParameters.Contains('Size')) {
+    elseif ($PSBoundParameters.ContainsKey('Size')) {
         [System.Collections.Generic.List[object]]::new($Size)
     }
     else {

@@ -12,10 +12,10 @@ function New-Set {
         $Size
     )
 
-    if ($PSBoundParameters.Contains('Collection')) {
+    if ($PSBoundParameters.ContainsKey('Collection')) {
         [System.Collections.Generic.HashSet[object]]::new($Collection)
     }
-    elseif ($PSBoundParameters.Contains('Size')) {
+    elseif ($PSBoundParameters.ContainsKey('Size')) {
         [System.Collections.Generic.HashSet[object]]::new($Size)
     }
     else {

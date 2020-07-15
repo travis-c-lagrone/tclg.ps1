@@ -13,7 +13,7 @@ function Out-List {
     )
     begin {
         $list =
-            if ($PSBoundParameters.Contains('Size')) {
+            if ($PSBoundParameters.ContainsKey('Size')) {
                 [System.Collections.Generic.List[object]]::new($Size)
             } else {
                 [System.Collections.Generic.List[object]]::new()

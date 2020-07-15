@@ -37,7 +37,7 @@ function Out-Dictionary {
     )
     begin {
         $dictionary =
-            if ($PSBoundParameters.Contains('Size')) {
+            if ($PSBoundParameters.ContainsKey('Size')) {
                 [System.Collections.Generic.Dictionary[object, object]]::new($Size)
             } else {
                 [System.Collections.Generic.Dictionary[object, object]]::new()

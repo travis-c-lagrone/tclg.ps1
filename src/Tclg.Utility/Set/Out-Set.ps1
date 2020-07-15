@@ -13,7 +13,7 @@ function Out-Set {
     )
     begin {
         $set =
-            if ($PSBoundParameters.Contains('Size')) {
+            if ($PSBoundParameters.ContainsKey('Size')) {
                 [System.Collections.Generic.HashSet[object]]::new($Size)
             } else {
                 [System.Collections.Generic.HashSet[object]]::new()
