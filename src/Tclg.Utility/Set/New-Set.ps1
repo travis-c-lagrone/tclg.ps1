@@ -4,11 +4,12 @@ function New-Set {
     param(
         [Parameter(ParameterSetName='Collection', Mandatory, Position=0)]
         [System.Collections.IEnumerable]
+        [ValidateNotNull()]
         $Collection,
 
         [Parameter(ParameterSetName='Size', Mandatory)]
-        [ValidateRange('NonNegative')]
         [int]
+        [ValidateRange('NonNegative')]
         $Size
     )
 

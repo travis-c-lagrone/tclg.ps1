@@ -3,8 +3,8 @@ function Out-Set {
     [OutputType([System.Collections.Generic.ISet[object]])]
     param(
         [Parameter()]
-        [ValidateRange('NonNegative')]
         [int]
+        [ValidateRange('NonNegative')]
         $Size,
 
         [Parameter(ValueFromPipeline)]

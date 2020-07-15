@@ -3,8 +3,8 @@ function Out-List {
     [OutputType([System.Collections.Generic.IList[object]])]
     param(
         [Parameter()]
-        [ValidateRange('NonNegative')]
         [int]
+        [ValidateRange('NonNegative')]
         $Size,
 
         [Parameter(ValueFromPipeline)]

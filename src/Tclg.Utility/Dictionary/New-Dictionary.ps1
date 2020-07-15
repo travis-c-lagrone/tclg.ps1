@@ -4,11 +4,12 @@ function New-Dictionary {
     param(
         [Parameter(ParameterSetName='Dictionary', Mandatory, Position=0)]
         [System.Collections.IDictionary]
+        [ValidateNotNull()]
         $Dictionary,
 
         [Parameter(ParameterSetName='Size', Mandatory)]
-        [ValidateRange('NonNegative')]
         [int]
+        [ValidateRange('NonNegative')]
         $Size
     )
 

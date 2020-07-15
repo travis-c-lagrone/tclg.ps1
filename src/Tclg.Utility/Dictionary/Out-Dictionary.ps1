@@ -3,18 +3,18 @@ function Out-Dictionary {
     [OutputType([System.Collections.Generic.IDictionary[object, object]])]
     param(
         [Parameter(Position=0)]
-        [ValidateNotNullOrEmpty()]
         [string]
+        [ValidateNotNullOrEmpty()]
         $KeyProperty = 'Key',
 
         [Parameter(Position=1)]
-        [ValidateNotNullOrEmpty()]
         [string]
+        [ValidateNotNullOrEmpty()]
         $ValueProperty = 'Value',
 
         [Parameter()]
-        [ValidateRange('NonNegative')]
         [int]
+        [ValidateRange('NonNegative')]
         $Size,
 
         [Parameter(ValueFromPipeline)]
