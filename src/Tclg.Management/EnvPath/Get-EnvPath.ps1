@@ -7,6 +7,7 @@ function Get-EnvPath {
         [Parameter(ParameterSetName='Raw', Position=0)]
         [System.EnvironmentVariableTarget]
         [ValidateNotNull()]
+        [Alias('EnvironmentVariableTarget')]
         $Target = [System.EnvironmentVariableTarget]::Process,
 
         [Parameter(ParameterSetName='Raw', Mandatory)]

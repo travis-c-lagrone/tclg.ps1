@@ -19,6 +19,7 @@ function Get-EnvVariable {
                 } else {
                     [System.Environment]::GetEnvironmentVariables().Keys
                 }
+            [array]::Sort($names)
             foreach ($name in $names) {
                 if ($name -like "$wordToComplete*") {
                     [System.Management.Automation.CompletionResult]::new($name)

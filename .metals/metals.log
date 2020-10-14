@@ -1,0 +1,3 @@
+2020.10.14 14:53:36 INFO  started: Metals version 0.9.4 in workspace 'C:\Users\trlagron\Projects\github.com\travis-c-lagrone\powershell-tclg' for client vscode.
+2020.10.14 14:53:37 INFO  time: initialize in 1.31s
+2020.10.14 14:53:38 WARN  no build tool detected in workspace 'C:\Users\trlagron\Projects\github.com\travis-c-lagrone\powershell-tclg'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
