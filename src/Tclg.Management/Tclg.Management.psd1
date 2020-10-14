@@ -26,6 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     FunctionsToExport = @(
         'Get-EnvPath'
+        'Get-EnvVariable'
 
         'Merge-FileAttributes'
         'New-FileAttributes'
@@ -40,7 +41,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         'Unprotect-Item'
     )
     AliasesToExport = @(
-        'gev'  # Get-EnvPath
+        'gep'  # Get-EnvPath
+        'gev'  # Get-EnvVariable
         'hi'  # Hide-Item
         'lki'  # Lock-Item
         'pti'  # Protect-Item
@@ -57,7 +59,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('file', 'attributes', 'FileAttributes', 'item', 'management', 'ReadOnly', 'Hidden', 'Encrypted', 'environment', 'path')
+            Tags = @('file', 'attributes', 'FileAttributes', 'item', 'management', 'ReadOnly', 'Hidden', 'Encrypted', 'environment', 'path', 'variable')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
