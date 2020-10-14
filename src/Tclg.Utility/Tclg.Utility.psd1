@@ -44,10 +44,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         'Set-Function'
         'Test-Function'
 
-        'Get-Noun'
-
         'New-List'
         'Out-List'
+
+        'Get-Noun'
+
+        'New-Queue'
+        'Out-Queue'
 
         'New-RegexOptions'
 
@@ -79,6 +82,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         'nlist'  # New-List
         'olist'  # Out-List
 
+        'nqueue'  # New-Queue
+        'oqueue'  # Out-Queue
+
         'nset'  # New-Set
         'oset'  # Out-Set
 
@@ -97,7 +103,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('Alias', 'Collections', 'Function', 'Hashtable', 'List', 'Noun', 'RegexOptions', 'Set', 'Stack', 'String', 'Variable')
+            Tags = @('Alias', 'Collections', 'Function', 'Hashtable', 'List', 'Noun', 'Queue', 'RegexOptions', 'Set', 'Stack', 'String', 'Variable')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'

@@ -20,6 +20,9 @@ $sources = @(
     'Noun/Get-Noun.ps1'
     'Noun/NounInfo.ps1'
 
+    'Queue/New-Queue.ps1'
+    'Queue/Out-Queue.ps1'
+
     'RegexOptions/New-RegexOptions.ps1'
 
     'Set/New-Set.ps1'
