@@ -1,6 +1,6 @@
 @{
     RootModule = 'Tclg.Management.psm1'
-    ModuleVersion = '0.0.1'
+    ModuleVersion = '0.2.0'
     GUID = '68b83a6a-eefa-43ce-89e3-102fdf35a0d7'
     Author = 'Travis C. LaGrone'
     Copyright = @'
@@ -13,7 +13,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '@
     Description = '#TODO'
-    PowerShellVersion = '7.0.0'
+    PowerShellVersion = '7.0.3'
 
     RequiredModules = @()
     RequiredAssemblies = @()
@@ -25,6 +25,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     NestedModules = @()
 
     FunctionsToExport = @(
+        'Get-EnvPath'
+        'Get-EnvVariable'
+
         'Merge-FileAttributes'
         'New-FileAttributes'
         'Split-FileAttributes'
@@ -38,6 +41,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         'Unprotect-Item'
     )
     AliasesToExport = @(
+        'gep'  # Get-EnvPath
+        'gev'  # Get-EnvVariable
         'hi'  # Hide-Item
         'lki'  # Lock-Item
         'pti'  # Protect-Item
@@ -54,7 +59,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('file', 'attributes', 'FileAttributes', 'item', 'management', 'ReadOnly', 'Hidden', 'Encrypted')
+            Tags = @('file', 'attributes', 'FileAttributes', 'item', 'management', 'ReadOnly', 'Hidden', 'Encrypted', 'environment', 'path', 'variable')
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
