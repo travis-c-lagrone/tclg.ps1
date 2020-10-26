@@ -46,12 +46,6 @@ $TimestampRegex = [regex]::new(@'
 $
 '@)
 
-function ConvertFromGroupCollection ([Text.RegularExpressions.GroupCollection] $Groups) {
-    $dict = @{}
-    $Groups.Keys.Where{ $_ -ne '0' }.ForEach{ $dict[$_] = $Groups[$_].Value }
-    [PSCustomObject] $dict
-}
-
 function ConvertFrom-Timestamp {
     [CmdletBinding(PositionalBinding = $false)]
     [OutputType([DateTime], [DateTimeOffset])]
@@ -66,7 +60,6 @@ function ConvertFrom-Timestamp {
             $match = $TimestampRegex.Match($Timestamp)
             if ($match.Success) {
                 $groups = $match.Groups
-                Write-Debug (ConvertFromGroupCollection $groups)
                 return $(
                     if ($groups['Offset'].Success) {
                         $datetime = [DateTime]::new(
