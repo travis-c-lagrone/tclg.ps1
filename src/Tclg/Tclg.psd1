@@ -1,6 +1,6 @@
 @{
     RootModule = 'Tclg.psm1'
-    ModuleVersion = '0.0.1'
+    ModuleVersion = '0.0.2'
 
     GUID = '927604ec-8b1d-4f98-8353-1469171e44cd'
     Author = 'Travis C. LaGrone'
@@ -16,18 +16,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     Description = 'Utilities, helpers, sugar, etc. for Travis C. LaGrone'
 
     CompatiblePSEditions = @('Core')
-    PowerShellVersion = '6.2'
+    PowerShellVersion = '7.1'
 
     # PowerShellHostName = ''
     # PowerShellHostVersion = ''
 
-    RequiredModules = @()
+    RequiredModules = @(
+        'Tclg.Core'
+        'Tclg.Management'
+        'Tclg.Security'
+        'Tclg.Utility'
+        'Tclg.Web'
+    )
     RequiredAssemblies = @()
-    ScriptsToProcess = @()
+    ScriptsToProcess = @('Scripts/Add-TclgProjectSrcToEnvPATH.ps1')
     TypesToProcess = @()
     FormatsToProcess = @()
 
-    NestedModules = @('Tclg.psm1')
+    NestedModules = @()
 
     FunctionsToExport = @()
     CmdletsToExport = @()
@@ -35,10 +41,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     AliasesToExport = @()
     DscResourcesToExport = @()
 
-    ModuleList = @()
+    ModuleList = @('Tclg')
     FileList = @(
         'Tclg.psd1'
         'Tclg.psm1'
+        'Scripts/Add-TclgProjectSrcToEnvPATH.ps1'
     )
 
     PrivateData = @{
