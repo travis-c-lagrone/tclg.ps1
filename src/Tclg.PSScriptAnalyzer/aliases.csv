@@ -1,0 +1,4 @@
+# Alias File
+"gsar","Get-ScriptAnalyzerRule","","None"
+"ifr","Invoke-Formatter","","None"
+"isa","Invoke-ScriptAnalyzer","","None"
