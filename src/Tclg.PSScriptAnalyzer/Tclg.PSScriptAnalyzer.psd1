@@ -5,7 +5,7 @@ GUID = '13c91ebd-07d4-4497-bb88-775eed5917a8'
 
 Author = 'Travis C. LaGrone'
 Copyright = '2020 (c) Travis C. LaGrone. All rights reserved.'
-# TODO Description = ''
+Description = 'PSScriptAnalyzer keyhandlers, configurations, utilities, etc.'
 
 PowerShellVersion = '7.1'
 RequiredModules = @('PSScriptAnalyzer')
@@ -25,7 +25,7 @@ AliasesToExport = @(
 )
 DscResourcesToExport = @()
 
-ModuleList = @('Tclg.PSScriptAnalyzer')
+# ModuleList = @('Tclg.PSScriptAnalyzer')
 FileList = @(
     'aliases.csv'
     'Tclg.PSScriptAnalyzer.psd1'
