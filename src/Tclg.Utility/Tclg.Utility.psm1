@@ -27,6 +27,7 @@ $sources = @(
 
     'Variable/Rename-Variable.ps1'
     'Variable/Test-Variable.ps1'
+    'Variable/Use-Variable.ps1'
 )
 
 foreach ($path in $sources) {

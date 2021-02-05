@@ -56,6 +56,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
         'Rename-Variable'
         'Test-Variable'
+        'Use-Variable'
     )
     AliasesToExport = @(
         'rnal'  # Rename-Alias
@@ -81,6 +82,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
         'rnv'  # Rename-Variable
         'tv'   # Test-Variable
+        'uv'   # Use-Variable
     )
     CmdletsToExport = @()
     VariablesToExport = @()
