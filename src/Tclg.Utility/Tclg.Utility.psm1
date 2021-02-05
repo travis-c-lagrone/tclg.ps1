@@ -25,6 +25,8 @@ $sources = @(
     'Set/New-Set.ps1'
     'Set/Out-Set.ps1'
 
+    'String/StringExtensions.ps1'
+
     'Variable/Rename-Variable.ps1'
     'Variable/Test-Variable.ps1'
     'Variable/Use-Variable.ps1'
