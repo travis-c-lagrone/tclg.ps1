@@ -6,147 +6,147 @@
       <CodeMethod>
         <Name>AddPrefix</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>AddPrefix</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>AddPrefixIfAbsent</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>AddPrefixIfAbsent</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>AddSuffix</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>AddSuffix</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>AddSuffixIfAbsent</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>AddSuffixIfAbsent</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>Remove</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>Remove</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>RemoveFirst</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>RemoveFirst</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>RemoveLast</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>RemoveLast</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>RemovePrefix</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>RemovePrefix</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>RemovePrefixIfPresent</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>RemovePrefixIfPresent</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>RemoveSuffix</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>RemoveSuffix</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>RemoveSuffixIfPresent</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>RemoveSuffixIfPresent</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>ReplacePrefix</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>ReplacePrefix</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>ReplacePrefixIfPresent</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>ReplacePrefixIfPresent</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>ReplaceSuffix</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>ReplaceSuffix</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>ReplaceSuffixIfPresent</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>ReplaceSuffixIfPresent</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>SubstringFrom</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>SubstringFrom</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>SubstringFromLast</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>SubstringFromLast</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>SubstringUntil</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>SubstringUntil</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>SubstringUntilLast</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>SubstringUntilLast</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>Head</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>Head</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
         <Name>Tail</Name>
         <CodeReference>
-          <TypeName>Tclg.Utility.StringExtensions</TypeName>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
           <MethodName>Tail</MethodName>
         </CodeReference>
       </CodeMethod>
