@@ -2,15 +2,13 @@ using namespace System.Collections.Specialized
 using namespace System.Management.Automation
 
 function Get-EnvVariable {
+    [Alias('env')]
     [CmdletBinding(PositionalBinding=$false, DefaultParameterSetName='All')]
     [OutputType([OrderedDictionary], ParameterSetName='All')]
     [OutputType([string], [OrderedDictionary], ParameterSetName='ByName')]  # which type depends on -AsDictionary switch parameter
-    [Alias('env')]
     param(
         [Parameter(ParameterSetName='ByName', Mandatory, Position=0, ValueFromPipeline)]
         [SupportsWildcards()]
-        [string[]]
-        [ValidateNotNullOrEmpty()]
         [ArgumentCompleter({
             param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
             $names =
@@ -24,19 +22,22 @@ function Get-EnvVariable {
                 } else {
                     [Environment]::GetEnvironmentVariables().Keys
                 }
+            $pattern = [WildcardPattern]::new("$wordToComplete*", $IsWindows ? [WildcardOptions]::IgnoreCase : [WildcardOptions]::None)
             foreach ($name in $names) {
-                if ($name -like "$wordToComplete*") {
+                if ($pattern.IsMatch($name)) {
                     [CompletionResult]::new($name)
                 }
             }
         })]
+        [ValidateNotNullOrEmpty()]
+        [string[]]
         $Name,
 
         [Parameter(ParameterSetName='All')]
         [Parameter(ParameterSetName='ByName')]
-        [EnvironmentVariableTarget]
-        [ValidateNotNull()]
         [Alias('EnvironmentVariableTarget')]
+        [ValidateNotNull()]
+        [EnvironmentVariableTarget]
         $Target = [EnvironmentVariableTarget]::Process,
 
         [Parameter(ParameterSetName='ByName')]
