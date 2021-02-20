@@ -1,7 +1,7 @@
 function Get-EnvVariable {
     [CmdletBinding(PositionalBinding=$false, DefaultParameterSetName='NoName')]
-    [OutputType([hashtable], ParameterSetName='NoName')]
-    [OutputType([string], ParameterSetName='Name')]
+    [OutputType([Collections.Specialized.OrderedDictionary], ParameterSetName='NoName')]
+    [OutputType([string], [Collections.Specialized.OrderedDictionary], ParameterSetName='Name')]  # which type depends on -AsDictionary switch parameter
     param(
         [Parameter(ParameterSetName='Name', Mandatory, Position=0, ValueFromPipeline)]
         [string]
@@ -10,18 +10,18 @@ function Get-EnvVariable {
             param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
             $names =
                 if ('Target' -in $fakeBoundParameters.Keys) {
-                    $target = $fakeBoundParameters['Target'] -as [System.EnvironmentVariableTarget]
+                    $target = $fakeBoundParameters['Target'] -as [EnvironmentVariableTarget]
                     if ($null -ne $target) {
-                        [System.Environment]::GetEnvironmentVariables($target).Keys
+                        [Environment]::GetEnvironmentVariables($target).Keys
                     } else {
-                        [System.Environment]::GetEnvironmentVariables().Keys
+                        [Environment]::GetEnvironmentVariables().Keys
                     }
                 } else {
-                    [System.Environment]::GetEnvironmentVariables().Keys
+                    [Environment]::GetEnvironmentVariables().Keys
                 }
             foreach ($name in $names) {
                 if ($name -like "$wordToComplete*") {
-                    [System.Management.Automation.CompletionResult]::new($name)
+                    [Management.Automation.CompletionResult]::new($name)
                 }
             }
         })]
@@ -29,16 +29,37 @@ function Get-EnvVariable {
 
         [Parameter(ParameterSetName='Name')]
         [Parameter(ParameterSetName='NoName')]
-        [System.EnvironmentVariableTarget]
+        [EnvironmentVariableTarget]
         [ValidateNotNull()]
         [Alias('EnvironmentVariableTarget')]
-        $Target = [System.EnvironmentVariableTarget]::Process
+        $Target = [EnvironmentVariableTarget]::Process,
+
+        [Parameter(ParameterSetName='Name')]
+        [switch]
+        $AsDictionary
     )
     process {
         if ($Name) {
-            [System.Environment]::GetEnvironmentVariable($Name, $Target)
-        } else {
-            [System.Environment]::GetEnvironmentVariables($Target)
+            if ($AsDictionary) {
+                $ordered = [Collections.Specialized.OrderedDictionary]::new($Name.Count)
+                foreach ($name_ in $Name) {
+                    $ordered[$name_] = [Environment]::GetEnvironmentVariable($name_, $Target)
+                }
+                $ordered
+            }
+            else {
+                foreach ($name_ in $Name) {
+                    [Environment]::GetEnvironmentVariable($name_, $Target)
+                }
+            }
+        }
+        else {
+            $hashtable = [Environment]::GetEnvironmentVariables($Target)
+            $ordered = [Collections.Specialized.OrderedDictionary]::new($hashtable.Count)
+            foreach ($entry in $hashtable.GetEnumerator()) {
+                $ordered[$entry.Key] = $entry.Value
+            }
+            $ordered
         }
     }
 }
