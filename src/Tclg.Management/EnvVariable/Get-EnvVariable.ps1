@@ -61,7 +61,7 @@ function Get-EnvVariable {
         $envVars = $null
         foreach ($name_ in $Name) {
             if ([WildcardPattern]::ContainsWildcardCharacters($name_)) {
-                $pattern = [WildcarPattern]::Get($name_, $Options)
+                $pattern = [WildcardPattern]::Get($name_, $Options)
                 $envVars ??= [Environment]::GetEnvironmentVariables($Target)
                 foreach ($literalName in $envVars.Keys) {
                     if ($pattern.IsMatch($literalName)) {
