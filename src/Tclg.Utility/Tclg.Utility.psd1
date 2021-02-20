@@ -1,6 +1,6 @@
 @{
     RootModule = 'Tclg.Utility.psm1'
-    ModuleVersion = '0.0.1'
+    ModuleVersion = '0.2.0'
     GUID = '376a69b5-06ba-467d-87ac-931892f53fcf'
     Author = 'Travis C. LaGrone'
     Copyright = @'
@@ -13,7 +13,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '@
     Description = '#TODO'
-    PowerShellVersion = '7.0.0'
+    PowerShellVersion = '7.1.2'
 
     RequiredModules = @()
     RequiredAssemblies = @()
@@ -99,14 +99,40 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     PrivateData = @{
         PSData = @{
-            Tags = @('Alias', 'Collections', 'Function', 'Hashtable', 'List', 'Noun', 'RegexOptions', 'Set', 'String', 'Variable')
+            Tags = @(
+                'Alias'
+                'args'
+                'ArgumentList'
+                'Collections'
+                'Function'
+                'Hashtable'
+                'List'
+                'Noun'
+                'RegexOptions'
+                'Set'
+                'String'
+                'Variable'
+            )
 
             LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
             ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
             # IconUri = ''
 
-            # ReleaseNotes = ''
-            # Prerelease = ''
+            ReleaseNotes = @'
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
+
+## Unreleased
+
+### Added
+
+- Added public function New-ArgumentList with alias New-Args in module Tclg.Utility.
+- Added public function ConvertTo-ArgumentList with alias ConvertTo-Args in module Tclg.Utility.
+'@
+            Prerelease = '20210220'
 
             RequireLicenseAcceptance = $false
 
