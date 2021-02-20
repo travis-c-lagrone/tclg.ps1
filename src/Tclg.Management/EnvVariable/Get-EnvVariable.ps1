@@ -1,10 +1,14 @@
+using namespace System.Collections.Specialized
+using namespace System.Management.Automation
+
 function Get-EnvVariable {
-    [CmdletBinding(PositionalBinding=$false, DefaultParameterSetName='NoName')]
-    [OutputType([Collections.Specialized.OrderedDictionary], ParameterSetName='NoName')]
-    [OutputType([string], [Collections.Specialized.OrderedDictionary], ParameterSetName='Name')]  # which type depends on -AsDictionary switch parameter
+    [CmdletBinding(PositionalBinding=$false, DefaultParameterSetName='All')]
+    [OutputType([OrderedDictionary], ParameterSetName='All')]
+    [OutputType([string], [OrderedDictionary], ParameterSetName='ByName')]  # which type depends on -AsDictionary switch parameter
     param(
-        [Parameter(ParameterSetName='Name', Mandatory, Position=0, ValueFromPipeline)]
-        [string]
+        [Parameter(ParameterSetName='ByName', Mandatory, Position=0, ValueFromPipeline)]
+        [SupportsWildcards()]
+        [string[]]
         [ValidateNotNullOrEmpty()]
         [ArgumentCompleter({
             param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
@@ -21,45 +25,72 @@ function Get-EnvVariable {
                 }
             foreach ($name in $names) {
                 if ($name -like "$wordToComplete*") {
-                    [Management.Automation.CompletionResult]::new($name)
+                    [CompletionResult]::new($name)
                 }
             }
         })]
         $Name,
 
-        [Parameter(ParameterSetName='Name')]
-        [Parameter(ParameterSetName='NoName')]
+        [Parameter(ParameterSetName='All')]
+        [Parameter(ParameterSetName='ByName')]
         [EnvironmentVariableTarget]
         [ValidateNotNull()]
         [Alias('EnvironmentVariableTarget')]
         $Target = [EnvironmentVariableTarget]::Process,
 
-        [Parameter(ParameterSetName='Name')]
+        [Parameter(ParameterSetName='ByName')]
         [switch]
         $AsDictionary
     )
+    begin {
+        $Options = $IsWindows ? [WildcardOptions]::IgnoreCase : [WildcardOptions]::None
+        $dictionary = if ($AsDictionary) {
+            $nameComparer = $IsWindows ? [StringComparer]::CurrentCultureIgnoreCase : [StringComparer]::CurrentCulture
+            if ($Name.Count) {
+                [OrderedDictionary]::new($Name.Count, $nameComparer)
+            } else {
+                [OrderedDictionary]::new($nameComparer)
+            }
+        }
+    }
     process {
-        if ($Name) {
-            if ($AsDictionary) {
-                $ordered = [Collections.Specialized.OrderedDictionary]::new($Name.Count)
-                foreach ($name_ in $Name) {
-                    $ordered[$name_] = [Environment]::GetEnvironmentVariable($name_, $Target)
+        $envVars = $null
+        foreach ($name_ in $Name) {
+            if ([WildcardPattern]::ContainsWildcardCharacters($name_)) {
+                $pattern = [WildcarPattern]::Get($name_, $Options)
+                $envVars ??= [Environment]::GetEnvironmentVariables($Target)
+                foreach ($literalName in $envVars.Keys) {
+                    if ($pattern.IsMatch($literalName)) {
+                        if ($AsDictionary -and -not $dictionary.Contains($literalName)) {
+                            $dictionary.Add($literalName, $envVars[$literalName])
+                        }
+                        else {
+                            $envVars[$literalName]
+                        }
+                    }
                 }
-                $ordered
             }
             else {
-                foreach ($name_ in $Name) {
+                if ($AsDictionary -and -not $dictionary.Contains($name_)) {
+                    $dictionary.Add($name_, [Environment]::GetEnvironmentVariable($name_, $Target))
+                }
+                else {
                     [Environment]::GetEnvironmentVariable($name_, $Target)
                 }
             }
         }
-        else {
-            $hashtable = [Environment]::GetEnvironmentVariables($Target)
-            $ordered = [Collections.Specialized.OrderedDictionary]::new($hashtable.Count)
-            foreach ($entry in $hashtable.GetEnumerator()) {
-                $ordered[$entry.Key] = $entry.Value
+    }
+    end {
+        if ($AsDictionary) {
+            $dictionary
+        }
+        elseif ($PSCmdlet.ParameterSetName -eq 'All') {
+            $envVars = [Environment]::GetEnvironmentVariables($Target)
+            $dictionary = [OrderedDictionary]::new($envVars.Count)
+            foreach ($literalName in ($envVars.Keys | Sort-Object)) {
+                $dictionary.Add($literalName, $envVars[$literalName])
             }
-            $ordered
+            $dictionary
         }
     }
 }
