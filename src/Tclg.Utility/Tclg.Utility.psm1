@@ -2,6 +2,9 @@ $sources = @(
     'Alias/Rename-Alias.ps1'
     'Alias/Test-Alias.ps1'
 
+    'ArgumentList/ConvertTo-ArgumentList.ps1'
+    'ArgumentList/New-ArgumentList.ps1'
+
     'Dictionary/New-Dictionary.ps1'
     'Dictionary/Out-Dictionary.ps1'
 
