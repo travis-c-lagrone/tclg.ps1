@@ -5,6 +5,7 @@ function Get-EnvVariable {
     [CmdletBinding(PositionalBinding=$false, DefaultParameterSetName='All')]
     [OutputType([OrderedDictionary], ParameterSetName='All')]
     [OutputType([string], [OrderedDictionary], ParameterSetName='ByName')]  # which type depends on -AsDictionary switch parameter
+    [Alias('env')]
     param(
         [Parameter(ParameterSetName='ByName', Mandatory, Position=0, ValueFromPipeline)]
         [SupportsWildcards()]
@@ -94,5 +95,3 @@ function Get-EnvVariable {
         }
     }
 }
-
-Set-Alias -Name 'gev' -Value 'Get-EnvVariable'
