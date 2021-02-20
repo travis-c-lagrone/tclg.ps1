@@ -32,6 +32,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         'Rename-Alias'
         'Test-Alias'
 
+        'New-ArgumentList'
+
         'New-Dictionary'
         'Out-Dictionary'
 
@@ -61,6 +63,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     AliasesToExport = @(
         'rnal'  # Rename-Alias
         'tal'   # Test-Alias
+
+        'New-Args'  # New-ArgumentList
 
         'ndict'  # New-Dictionary
         'odict'  # Out-Dictionary
