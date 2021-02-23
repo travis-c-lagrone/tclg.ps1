@@ -5,6 +5,7 @@ $sources = @(
     './EnvVariable/EnvNameWildcardOptions.ps1'
     './EnvVariable/Get-EnvVariable.ps1'
     './EnvVariable/Set-EnvVariable.ps1'
+    './EnvVariable/ValidateEnvironmentVariableTargetAttribute.ps1'
 
     './FileAttributes/Merge-FileAttributes.ps1'
     './FileAttributes/New-FileAttributes.ps1'

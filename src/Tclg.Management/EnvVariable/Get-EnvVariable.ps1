@@ -37,8 +37,7 @@ function Get-EnvVariable {
         [Parameter(ParameterSetName='ByName')]
         [Alias('EnvironmentVariableTarget')]
         [ValidateNotNull()]
-        [ValidateScript({ $IsWindows -or $_ -eq [EnvironmentVariableTarget]::Process },
-                        ErrorMessage='The environment variable target ''{0}'' is supported only on Windows.')]
+        [ValidateEnvironmentVariableTarget()]
         [EnvironmentVariableTarget]
         $Target = [EnvironmentVariableTarget]::Process,
 

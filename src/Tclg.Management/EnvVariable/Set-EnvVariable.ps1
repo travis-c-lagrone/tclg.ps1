@@ -42,8 +42,7 @@ function Set-EnvVariable {
         [Parameter()]
         [Alias('EnvironmentVariableTarget')]
         [ValidateNotNull()]
-        [ValidateScript({ $IsWindows -or $_ -eq [EnvironmentVariableTarget]::Process },
-                        ErrorMessage='The environment variable target ''{0}'' is supported only on Windows.')]
+        [ValidateEnvironmentVariableTarget()]
         [EnvironmentVariableTarget]
         $Target = [EnvironmentVariableTarget]::Process
     )
