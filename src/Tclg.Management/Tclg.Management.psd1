@@ -45,7 +45,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     AliasesToExport = @(
         'gep'  # Get-EnvPath
 
-        'env'  # Get-EnvVariable
+        'gev'  # Get-EnvVariable
+        'sev'  # Set-EnvVariable
 
         'hi'   # Hide-Item
         'lki'  # Lock-Item

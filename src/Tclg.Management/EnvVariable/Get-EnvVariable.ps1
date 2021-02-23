@@ -2,7 +2,7 @@ using namespace System.Collections.Specialized
 using namespace System.Management.Automation
 
 function Get-EnvVariable {
-    [Alias('env')]
+    [Alias('gev')]
     [CmdletBinding(PositionalBinding=$false, DefaultParameterSetName='All')]
     [OutputType([OrderedDictionary], ParameterSetName='All')]
     [OutputType([string], [OrderedDictionary], ParameterSetName='ByName')]  # which type depends on -AsDictionary switch parameter

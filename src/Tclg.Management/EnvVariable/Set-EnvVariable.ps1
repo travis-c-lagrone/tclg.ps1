@@ -3,7 +3,9 @@ using namespace System.Management.Automation
 using namespace System.Management.Automation.Language
 
 function Set-EnvVariable {
+    [Alias('sev')]
     [CmdletBinding(PositionalBinding=$false, SupportsShouldProcess)]
+    [OutputType([void])]
     param(
         [Parameter(Mandatory, Position=0, ValueFromPipeline)]
         [SupportsWildcards()]
