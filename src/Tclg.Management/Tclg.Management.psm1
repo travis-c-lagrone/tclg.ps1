@@ -1,6 +1,10 @@
 $sources = @(
     './EnvPath/Get-EnvPath.ps1'
+
+    './EnvVariable/EnvNameComparer.ps1'
+    './EnvVariable/EnvNameWildcardOptions.ps1'
     './EnvVariable/Get-EnvVariable.ps1'
+    './EnvVariable/Set-EnvVariable.ps1'
 
     './FileAttributes/Merge-FileAttributes.ps1'
     './FileAttributes/New-FileAttributes.ps1'

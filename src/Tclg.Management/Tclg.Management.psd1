@@ -26,7 +26,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
     FunctionsToExport = @(
         'Get-EnvPath'
+
         'Get-EnvVariable'
+        'Set-EnvVariable'
 
         'Merge-FileAttributes'
         'New-FileAttributes'
@@ -81,7 +83,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             # IconUri = ''
 
             # ReleaseNotes = ''
-            Prerelease = '20210220'
+            Prerelease = '20210223'
 
             RequireLicenseAcceptance = $false
 
