@@ -53,10 +53,10 @@
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
-        <Name>RemovePrefix</Name>
+        <Name>RemoveHead</Name>
         <CodeReference>
           <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
-          <MethodName>RemovePrefix</MethodName>
+          <MethodName>RemoveHead</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
@@ -67,10 +67,10 @@
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
-        <Name>RemoveSuffix</Name>
+        <Name>RemoveTail</Name>
         <CodeReference>
           <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
-          <MethodName>RemoveSuffix</MethodName>
+          <MethodName>RemoveTail</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
@@ -81,10 +81,10 @@
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
-        <Name>ReplacePrefix</Name>
+        <Name>ReplaceHead</Name>
         <CodeReference>
           <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
-          <MethodName>ReplacePrefix</MethodName>
+          <MethodName>ReplaceHead</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
@@ -95,10 +95,10 @@
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
-        <Name>ReplaceSuffix</Name>
+        <Name>ReplaceTail</Name>
         <CodeReference>
           <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
-          <MethodName>ReplaceSuffix</MethodName>
+          <MethodName>ReplaceTail</MethodName>
         </CodeReference>
       </CodeMethod>
       <CodeMethod>
