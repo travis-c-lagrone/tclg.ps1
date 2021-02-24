@@ -3,230 +3,153 @@
   <Type>
     <Name>System.String</Name>
     <Members>
-      <ScriptMethod>
-        <Name>InsertEnd</Name>
-        <Script>
-          [OutputType([string])]
-          param([string] $value)
-          return $this.Insert($this.Length, $value)
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>InsertStart</Name>
-        <Script>
-          [OutputType([string])]
-          param([string] $value)
-          return $this.Insert(0, $value)
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>RemoveEnd</Name>
-        <Script>
-          [OutputType([string])]
-          param([int] $length, [bool] $strict = $false)
-          if ($length -lt 0) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
-            } else {
-              $length = 0
-            }
-          }
-          if ($length -gt $this.Length) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
-            } else {
-              $length = $this.Length
-            }
-          }
-          return $this.Substring(0, $this.Length - $length)
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>RemoveStart</Name>
-        <Script>
-          [OutputType([string])]
-          param([int] $length, [bool] $strict = $false)
-          if ($length -lt 0) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
-            } else {
-              $length = 0
-            }
-          }
-          if ($length -gt $this.Length) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
-            } else {
-              $length = $this.Length
-            }
-          }
-          return $this.Substring($length)
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>ReplaceEnd</Name>
-        <Script>
-          [OutputType([string])]
-          param([string] $oldValue, [string] $newValue, [bool] $strict = $false)
-          if (-not $this.EndsWith($oldValue)) {
-            if ($strict) {
-              $escapedThis = [System.Management.Automation.Language.CodeGeneration]::EscapeSingleQuotedStringContent($this)
-              $escapedOldValue = [System.Management.Automation.Language.CodeGeneration]::EscapeSingleQuotedStringContent($oldValue)
-              throw [IndexOutOfRangeException] "'$escapedThis' does not end with '$escapedOldValue'"
-            }
-            return $this
-          }
-          return $this.Substring(0, $this.Length - $oldValue.Length) + $newValue
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>ReplaceStart</Name>
-        <Script>
-          [OutputType([string])]
-          param([string] $oldValue, [string] $newValue, [bool] $strict = $false)
-          if (-not $this.StartsWith($oldValue)) {
-            if ($strict) {
-              $escapedThis = [System.Management.Automation.Language.CodeGeneration]::EscapeSingleQuotedStringContent($this)
-              $escapedOldValue = [System.Management.Automation.Language.CodeGeneration]::EscapeSingleQuotedStringContent($oldValue)
-              throw [IndexOutOfRangeException] "'$escapedThis' does not start with '$escapedOldValue'"
-            }
-            return $this
-          }
-          return $newValue + $this.Substring($oldValue.Length)
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>SubstringAfter</Name>
-        <Script>
-          [OutputType([string])]
-          param([string] $value, [string][PSDefaultValue(Help='The $value argument.')] $defaultValue = $null)
-          if ($value -eq '') {
-            return $this
-          }
-          $index = $this.IndexOf($value)
-          return $(
-            if ($index -eq -1) {
-              if (-not $PSBoundParameters.ContainsKey('defaultValue')) {
-                $defaultValue = $value
-              }
-              $defaultValue
-            }
-            else {
-              $this.Substring($index)
-            }
-          )
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>SubstringAfterLast</Name>
-        <Script>
-          [OutputType([string])]
-          param([string] $value, [string][PSDefaultValue(Help='The $value argument.')] $defaultValue = $null)
-          if ($value -eq '') {
-            return $this
-          }
-          $index = $this.LastIndexOf($value)
-          return $(
-            if ($index -eq -1) {
-              if (-not $PSBoundParameters.ContainsKey('defaultValue')) {
-                $defaultValue = $value
-              }
-              $defaultValue
-            }
-            else {
-              $this.Substring($index)
-            }
-          )
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>SubstringBefore</Name>
-        <Script>
-          [OutputType([string])]
-          param([string] $value, [string][PSDefaultValue(Help='The $value argument.')] $defaultValue = $null)
-          if ($value -eq '') {
-            return $this
-          }
-          $index = $this.IndexOf($value)
-          return $(
-            if ($index -eq -1) {
-              if (-not $PSBoundParameters.ContainsKey('defaultValue')) {
-                $defaultValue = $value
-              }
-              $defaultValue
-            }
-            else {
-              $this.Substring(0, $index)
-            }
-          )
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>SubstringBeforeLast</Name>
-        <Script>
-          [OutputType([string])]
-          param([string] $value, [string][PSDefaultValue(Help='The $value argument.')] $defaultValue = $null)
-          if ($value -eq '') {
-            return $this
-          }
-          $index = $this.LastIndexOf($value)
-          return $(
-            if ($inde -eq -1) {
-              if (-not $PSBoundParameters.ContainsKey('defaultValue')) {
-                $defaultValue = $value
-              }
-              $defaultValue
-            }
-            else {
-              $this.Substring(0, $index)
-            }
-          )
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>SubstringEnd</Name>
-        <Script>
-          [OutputType([string])]
-          param([int] $length, [bool] $strict = $false)
-          if ($length -lt 0) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
-            } else {
-              $length = 0
-            }
-          }
-          if ($length -gt $this.Length) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
-            } else {
-              $length = $this.Length
-            }
-          }
-          return $this.Substring($this.Length - $length)
-        </Script>
-      </ScriptMethod>
-      <ScriptMethod>
-        <Name>SubstringStart</Name>
-        <Script>
-          [OutputType([string])]
-          param([int] $length, [bool] $strict = $false)
-          if ($length -lt 0) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is less than 0"
-            } else {
-              $length = 0
-            }
-          }
-          if ($length -gt $this.Length) {
-            if ($strict) {
-              throw [IndexOutOfRangeException] "Requested length $length is greater than available length $($this.Length)"
-            } else {
-              $length = $this.Length
-            }
-          }
-          return $this.Substring(0, $length)
-        </Script>
-      </ScriptMethod>
+      <CodeMethod>
+        <Name>AddPrefix</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>AddPrefix</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>AddPrefixIfAbsent</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>AddPrefixIfAbsent</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>AddSuffix</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>AddSuffix</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>AddSuffixIfAbsent</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>AddSuffixIfAbsent</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>Remove</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>Remove</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>RemoveFirst</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>RemoveFirst</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>RemoveLast</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>RemoveLast</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>RemoveHead</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>RemoveHead</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>RemovePrefixIfPresent</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>RemovePrefixIfPresent</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>RemoveTail</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>RemoveTail</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>RemoveSuffixIfPresent</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>RemoveSuffixIfPresent</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>ReplaceHead</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>ReplaceHead</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>ReplacePrefixIfPresent</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>ReplacePrefixIfPresent</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>ReplaceTail</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>ReplaceTail</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>ReplaceSuffixIfPresent</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>ReplaceSuffixIfPresent</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>SubstringFrom</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>SubstringFrom</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>SubstringFromLast</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>SubstringFromLast</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>SubstringUntil</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>SubstringUntil</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>SubstringUntilLast</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>SubstringUntilLast</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>Head</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>Head</MethodName>
+        </CodeReference>
+      </CodeMethod>
+      <CodeMethod>
+        <Name>Tail</Name>
+        <CodeReference>
+          <TypeName>Tclg.Utility.PSStringExtensions</TypeName>
+          <MethodName>Tail</MethodName>
+        </CodeReference>
+      </CodeMethod>
     </Members>
   </Type>
 </Types>
