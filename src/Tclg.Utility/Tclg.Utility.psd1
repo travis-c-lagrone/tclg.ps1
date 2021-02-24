@@ -16,7 +16,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     PowerShellVersion = '7.1.2'
 
     RequiredModules = @()
-    RequiredAssemblies = @()
+    RequiredAssemblies = @(
+        './String/StringExtensions.dll'
+    )
 
     ScriptsToProcess = @()
     TypesToProcess = @(
@@ -132,7 +134,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Added public function New-ArgumentList with alias New-Args in module Tclg.Utility.
 - Added public function ConvertTo-ArgumentList with alias ConvertTo-Args in module Tclg.Utility.
 '@
-            Prerelease = '20210220'
+            Prerelease = '20210224'
 
             RequireLicenseAcceptance = $false
 
