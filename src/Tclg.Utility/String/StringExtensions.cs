@@ -1,380 +1,255 @@
 #nullable enable
+
 using System;
+using System.Collections.Generic;
 
-namespace Tclg.Utility
+namespace Tclg.PowerShell.Utility
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Management.Automation;
+	public static partial class StringExtensions
+	{
+		#region Add
 
-    public static class StringExtensions
-    {
-        public static bool ContainsAll(this string @this, IList<string> values) => values.All(@value => @this.Contains(@value));
-        public static bool ContainsAny(this string @this, IList<string> values) => values.Any(@value => @this.Contains(@value));
+		public static string Prepend(this string @this, string value)
+				=> value + @this;
 
-        public static bool StartsWithAny(this string @this, IList<string> values) => values.Any(@value => @this.StartsWith(@value));
-        public static bool EndsWithAny(this string @this, IList<string> values)   => values.Any(@value => @this.EndsWith(@value));
+		public static string PrependLine(this string @this, string value = String.Empty)
+				=> String.Concat(value, Environment.NewLine, @this);
 
-        public static bool SurroundedBy(this string @this, string @value)                      => @this.StartsWith(@value)     && @this.EndsWith(@value);
-        public static bool SurroundedBy(this string @this, string startValue, string endValue) => @this.StartsWith(startValue) && @this.EndsWith(endValue);
-        public static bool SurroundedByAny(this string @this, IList<string> values) => values.Any(@value => @this.StartsWith(@value) && @this.EndsWith(@value));
+		public static string PrependLines(this string @this, IList<string> values)
+				=> (values.Count == 0) ? @this : String.Concat(String.Join(Environment.NewLine, values), Environment.NewLine, @this);
 
-        public static string DefaultIfEmpty(this string @this, string @default)             => String.IsNullOrEmpty(@this)      ? @default : @this;
-        public static string DefaultIfEmptyOrWhitespace(this string @this, string @default) => String.IsNullOrWhitespace(@this) ? @default : @this;
+		// Value is prepended to this string if and only if this string does not already start with value.
+		public static string AddPrefix(this string @this, string value)
+				=> @this.StartsWith(value) ? @this : (value + @this);
 
-        public static string? NullIfEmpty(this string @this)             => String.IsNullOrEmpty(@this)      ? null : @this;
-        public static string? NullIfEmptyOrWhitespace(this string @this) => String.IsNullOrWhitespace(@this) ? null : @this;
-        
-        //region IndexOf variant that can default to a more useful value than -1.
+		// Prepends the concatenation of value and Environment.NewLine this string if and only if this string does not already start with value.
+		public static string AddPrefixLine(this string @this, string value)
+				=> @this.StartsWith(value) ? @this : String.Concat(value, Environment.NewLine, @this);
 
-        public static enum DefaultIndex
+		public static string Append(this string @this, string value)
+				=> @this + value;
+
+        public static string AppendLine(this string @this, string value = String.Empty)
+                => String.Concat(@this, Environment.NewLine, value);
+
+		public static string AppendLines(this string @this, IList<string> values)
+				=> (values.Count == 0) ? @this : String.Concat(@this, Environment.NewLine, String.Join(Environment.NewLine, values));
+
+        // Value is appended to this string if and only if this string does not already end with value.
+        public static string AddSuffix(this string @this, string value)
+				=> @this.EndsWith(value) ? @this : (@this + value);
+
+        // Environment.NewLine and value are appended to this string if and only if this string does not already end with value.
+        public static string AddSuffixLine(this string @this, string value)
+				=> @this.EndsWith(value) ? @this : String.Concat(@this, Environment.NewLine, value);
+
+		#endregion
+
+		#region Remove
+
+		// Removes all non-overlapping instances of value from this string.
+		// If value is the empty string, then nothing is removed (this string is returned unchanged).
+		// If value does not exist in this string, then nothing is removed (this string is returned unchanged).
+		public static string Remove(this string @this, string value)
+				=> (value.Length == 0) ? @this : @this.Replace(value, "");
+
+        // Removes nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string RemoveFirst(this string @this, string value)
+		{
+			int index = @this.IndexOf(value);
+			return index == -1 ? @this : @this.Remove(index, value.Length);
+		}
+
+        // Removes nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string RemoveBeforeFirst(this string @this, string value)
+		{
+			int index = @this.IndexOf(value);
+			return index == -1 ? @this : @this.Substring(index);
+		}
+
+        // Removes nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string RemoveAfterFirst(this string @this, string value)
+		{
+			int index = @this.IndexOf(value);
+			return index == -1 ? @this : @this.Substring(0, index + value.Length);
+		}
+
+        // Removes nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string RemoveLast(this string @this, string value)
+		{
+			int index = @this.LastIndexOf(value);
+			return index == -1 ? @this : @this.Remove(index, value.Length);
+		}
+
+        // Removes nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string RemoveBeforeLast(this string @this, string value)
+		{
+			int index = @this.LastIndexOf(value);
+			return index == -1 ? @this : @this.Substring(index);
+		}
+
+        // Removes nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string RemoveAfterLast(this string @this, string value)
+		{
+			int index = @this.LastIndexOf(value);
+			return index == -1 ? @this : @this.Substring(0, index + value.Length);
+		}
+
+        // Removes nothing (returns this string unchanged) if this string does not start with the value.
+        public static string RemovePrefix(this string @this, string value)
+				=> @this.StartsWith(value) ? @this.Substring(value.Length) : @this;
+
+		// Removes nothing (returns this string unchanged) if this string does not end with the value.
+		public static string RemoveSuffix(this string @this, string value)
+				=> @this.EndsWith(value) ? @this.Substring(0, @this.Length - value.Length) : @this;
+
+		// Clamps the length to the range [0, @this.Length] prior to removing that length.
+        public static string RemoveHead(this string @this, int length)
+                => @this.Substring(Math.Clamp(length, 0, @this.Length));
+
+        // Clamps the length to the range [0, @this.Length] prior to removing that length.
+        public static string RemoveTail(this string @this, int length)
+                => @this.Substring(0, @this.Length - Math.Clamp(length, 0, @this.Length));
+
+        #endregion
+
+        #region Replace
+
+        // If count is negative, then nothing is replaced (this string is returned unchanged).
+        // Otherwise, the region to be replaced is identified by [startIndex, startIndex + count).
+        // If the region has zero length and startIndex is a valid index of this string, then newValue is inserted at startIndex.
+        // If the region has positive length but neither overlaps with nor is adjacent to this string, then nothing is replaced.
+        // If the region has positive length and does not overlap with this string but is adjacent to it, then newValue is inserted at the boundary.
+        // If the region has positive length and overlaps with this string, then the overlapping region is replaced with newValue.
+        public static string Replace(this string @this, int startIndex, int count, string newValue)
+		{
+			if (count < 0 || startIndex > @this.Length)
+			{
+				return @this;
+			}
+
+			if (startIndex < 0)
+			{
+				count += startIndex;  // Adding a negative startIndex is actually subtraction.
+				startIndex = 0;
+			}
+			count = Math.Min(count, @this.Length - startIndex);
+
+			return @this.Substring(0, startIndex) + newValue + @this.Substring(startIndex + count);
+		}
+
+        // Replaces nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string ReplaceFirst(this string @this, string oldValue, string newValue)
+		{
+			int index = @this.IndexOf(oldValue);
+			return index == -1 ? @this : (@this.Substring(0, index) + newValue + @this.Substring(index + oldValue.Length));
+		}
+
+        // Replaces nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string ReplaceBeforeFirst(this string @this, string value, string newValue)
+		{
+			int index = @this.IndexOf(value);
+			return index == -1 ? @this : (newValue + @this.Substring(index));
+		}
+
+        // Replaces nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string ReplaceAfterFirst(this string @this, string value, string newValue)
+		{
+			int index = @this.IndexOf(value);
+			return index == -1 ? @this : (@this.Substring(0, index + value.Length) + newValue);
+		}
+
+        // Replaces nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string ReplaceLast(this string @this, string oldValue, string newValue)
         {
-            Zero,
-            StartIndex,
-            EndIndex,
-            Length,
+            int index = @this.LastIndexOf(oldValue);
+            return index == -1 ? @this : (@this.Substring(0, index) + newValue + @this.Substring(index + oldValue.Length));
         }
 
-        private static int ResolveDefaultIndex(string @string, string @value, DefaultIndex @default) => @default switch
-        {
-            DefaultIndex.Zero       => 0,
-            DefaultIndex.StartIndex => 0,
-            DefaultIndex.EndIndex   => @string.Length,
-            DefaultIndex.Length     => @string.Length,
-        };
+        // Replaces nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string ReplaceBeforeLast(this string @this, string value, string newValue)
+		{
+			int index = @this.LastIndexOf(value);
+			return index == -1 ? @this : (newValue + @this.Substring(index));
+		}
 
-        private static int ResolveDefaultIndex(string @string, string @value, int startIndex, DefaultIndex @default) => @default switch
-        {
-            DefaultIndex.Zero       => 0,
-            DefaultIndex.StartIndex => startIndex,
-            DefaultIndex.EndIndex   => @string.Length,
-            DefaultIndex.Length     => @string.Length,
-        };
+        // Replaces nothing (returns this string unchanged) if the value does not exist in this string.
+        public static string ReplaceAfterLast(this string @this, string value, string newValue)
+		{
+			int index = @this.LastIndexOf(value);
+			return index == -1 ? @this : (@this.Substring(0, index + value.Length) + newValue);
+		}
 
-        private static int ResolveDefaultIndex(string @string, string @value, int startIndex, int count, DefaultIndex @default) => @default switch
-        {
-            DefaultIndex.Zero       => 0,
-            DefaultIndex.StartIndex => startIndex,
-            DefaultIndex.EndIndex   => startIndex + count,
-            DefaultIndex.Length     => @string.Length,
-        };
-        
-        //region IndexOrDefault
-        
-        public static int IndexOrDefault(this string @this, string @value, DefaultIndex @default)
-        {
-            int index = @this.IndexOf(@value);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, @default);
-        }
+        // Replaces nothing (returns this string unchanged) if this string does not start with the oldValue.
+        public static string ReplacePrefix(this string @this, string oldValue, string newValue)
+				=> @this.StartsWith(oldValue) ? (newValue + @this.Substring(oldValue.Length)) : @this;
 
-        public static int IndexOrDefault(this string @this, string @value, DefaultIndex @default, StringComparison comparisonType)
-        {
-            int index = @this.IndexOf(@value, comparisonType);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, @default);
-        }
-        
-        public static int IndexOrDefault(this string @this, string @value, int startIndex, DefaultIndex @default)
-        {
-            int index = @this.IndexOf(@value, startIndex);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, startIndex, @default);
-        }
+        // Replaces nothing (returns this string unchanged) if this string does not end with the oldValue.
+        public static string ReplaceSuffix(this string @this, string oldValue, string newValue)
+				=> @this.EndsWith(oldValue) ? (@this.Substring(0, @this.Length - oldValue.Length) + newValue) : @this;
 
-        public static int IndexOrDefault(this string @this, string @value, int startIndex, DefaultIndex @default, StringComparison comparisonType)
-        {
-            int index = @this.IndexOf(@value, startIndex, comparisonType);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, startIndex, @default);
-        }
+        // Clamps the length to the range [0, @this.Length] prior to replacing that length.
+		// If the length to replace is 0, then the newValue is always prepended to this string.
+		// If the length of this string is 0 and the length to replace is positive, then nothing is replaced (this string is returned unchanged).
+        public static string ReplaceHead(this string @this, int length, string newValue)
+				=>	(length <= 0) ? (newValue + @this) :
+					(@this.Length == 0) ? String.Empty :
+					(newValue + @this.Substring(Math.Min(length, @this.Length)));
 
-        public static int IndexOrDefault(this string @this, string @value, int startIndex, int count, DefaultIndex @default)
-        {
-            int index = @this.IndexOf(@value, startIndex, count);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, startIndex, count, @default);
-        }
+        // Clamps the length to the range [0, @this.Length] prior to replacing that length.
+        // If the length to replace is 0, then the newValue is always appended to this string.
+        // If the length of this string is 0 and the length to replace is positive, then nothing is replaced (this string is returned unchanged).
+        public static string ReplaceTail(this string @this, int length, string newValue)
+                => (length <= 0) ? (@this + newValue) :
+                    (@this.Length == 0) ? String.Empty :
+                    (@this.Substring(0, @this.Length - Math.Min(length, @this.Length)) + newValue);
 
-        public static int IndexOrDefault(this string @this, string @value, int startIndex, int count, DefaultIndex @default, StringComparison comparisonType)
-        {
-            int index = @this.IndexOf(@value, startIndex, count, comparisonType);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, startIndex, count, @default);
-        }
+		#endregion
 
-        //endregion
+		#region Substring
 
-        //region LastIndexOrDefault
+		// If value does not occur in this string, then the empty string is returned.
+		// If value is the empty string, then the empty string is returned.
+		public static string SubstringBeforeFirst(this string @this, string value)
+		{
+			int index = @this.IndexOf(value);
+			return index == -1 ? String.Empty : @this.Substring(0, index);
+		}
 
-        public static int LastIndexOrDefault(this string @this, string @value, DefaultIndex @default)
-        {
-            int index = @this.LastIndexOf(@value);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, @default);
-        }
+        // If value does not occur in this string, then the empty string is returned.
+        // If value is the empty string, then this entire string is returned.
+        public static string SubstringAfterFirst(this string @this, string value)
+		{
+			int index = @this.IndexOf(value);
+			return index == -1 ? String.Empty : @this.Substring(index + value.Length);
+		}
 
-        public static int LastIndexOrDefault(this string @this, string @value, DefaultIndex @default, StringComparison comparisonType)
-        {
-            int index = @this.LastIndexOf(@value, comparisonType);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, @default);
-        }
-        
-        public static int LastIndexOrDefault(this string @this, string @value, int startIndex, DefaultIndex @default)
-        {
-            int index = @this.LastIndexOf(@value, startIndex);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, startIndex, @default);
-        }
+        // If value does not occur in this string, then the empty string is returned.
+        // If value is the empty string, then this entire string is returned.
+        public static string SubstringBeforeLast(this string @this, string value)
+		{
+			int index = @this.LastIndexOf(value);
+			return index == -1 ? String.Empty : @this.Substring(0, index);
+		}
 
-        public static int LastIndexOrDefault(this string @this, string @value, int startIndex, DefaultIndex @default, StringComparison comparisonType)
-        {
-            int index = @this.LastIndexOf(@value, startIndex, comparisonType);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, startIndex, @default);
-        }
+        // If value does not occur in this string, then the empty string is returned.
+        // If value is the empty string, then the empty string is returned.
+        public static string SubstringAfterLast(this string @this, string value)
+		{
+            int index = @this.LastIndexOf(value);
+			return index == -1 ? String.Empty : @this.Substring(index + value.Length);
+		}
 
-        public static int LastIndexOrDefault(this string @this, string @value, int startIndex, int count, DefaultIndex @default)
-        {
-            int index = @this.LastIndexOf(@value, startIndex, count);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, startIndex, count, @default);
-        }
+		// If length is non-positive, then the empty string is returned.
+		// If length is longer than this string, then this entire string is returned.
+        public static string Head(this string @this, int length)
+				=> @this.Substring(0, Math.Clamp(length, 0, @this.Length));
 
-        public static int LastIndexOrDefault(this string @this, string @value, int startIndex, int count, DefaultIndex @default, StringComparison comparisonType)
-        {
-            int index = @this.LastIndexOf(@value, startIndex, count, comparisonType);
-            return index != -1 ? index : ResolveDefaultIndex(@this, @value, startIndex, count, @default);
-        }
+        // If length is non-positive, then the empty string is returned.
+        // If length is longer than this string, then this entire string is returned.
+        public static string Tail(this string @this, int length)
+				=> @this.Substring(@this.Length - Math.Clamp(length, 0, @this.Length));
 
-        //endregion
-
-        //endregion
-
-        //region Substring operations
-        
-        //region SubstringStart
-
-        // This method will throw if there is more length requested than is available.
-        public static string SubstringStart(this string @this, int length) => @this.Substring(0, length);
-
-        // This method will return the entire input string (i.e. `@this`) without error if more length is requested than is available.
-        public static string SubstringStartOrFull(this string @this, int length) => length > @this.Length ? @this : @this.Substring(0, length);
-
-        // This method will return the entire input string (i.e. `@this`) without error if more length is requested than is available.
-        // This method will return null if the requested length is negative.
-        public static string? TrySubstringStart(this string @this, int length)
-        {
-            if (length < 0)
-            {
-                return null;
-            }
-            else if (length <= @this.Length)
-            {
-                return @this.Substring(0, length);
-            }
-            else
-            {
-                return @this;
-            }
-        }
-        //endregion
-
-        //region SubstringEnd
-
-        // This method will throw if there is more length requested than is available.
-        public static string SubstringEnd(this string @this, int length) => @this.Substring(@this.Length - length, length);
-
-        // This method will return the entire input string (i.e. `@this`) without error if more length is requested than is available.
-        public static string SubstringEndOrFull(this string @this, int length) => length > @this.Length ? @this : @this.Substring(@this.Length - length, length);
-
-        // This method will return the entire input string (i.e. `@this`) without error if more length is requested than is available.
-        // This method will return null if the requested length is negative.
-        public static string? TrySubstringEnd(this string @this, int length)
-        {
-            if (length < 0)
-            {
-                return null;
-            }
-            else if (length <= @this.Length)
-            {
-                return @this.Substring(@this.Length - length, length);
-            }
-            else
-            {
-                return @this;
-            }            
-        }
-        //endregion
-
-        public static enum DefaultSubstring
-        {
-            EmptyString,
-            FullString,
-        }
-
-        private static string ResolveDefaultSubstring(string @string, DefaultSubstring @default) => @default switch
-        {
-            DefaultSubstring.EmptyString => String.Empty,
-            DefaultSubstring.FullString  => @string,
-        };
-        
-        //region These methods will throw an exception if the value does not exist.
-        public static string SubstringBeforeFirst(this string @this, string @value, bool includeValue = false)
-        {
-            int index = @this.IndexOf(@value);
-            if (index != -1)
-            {
-                return @this.Substring(0, index + (includeValue ? @value.Length : 0));
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(ValueNotFoundErrorMessage);
-            }
-        }
-
-        public static string SubstringAfterFirst(this string @this, string @value, bool includeValue = false)
-        {
-            int index = @this.IndexOf(@value);
-            if (index != -1)
-            {
-                return @this.Substring(index + (includeValue ? 0 : @value.Length));
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(ValueNotFoundErrorMessage);
-            }
-        }
-        //endregion
-        
-        //region These methods will return null if the value does not exist.
-        public static string? TrySubstringBeforeFirst(this string @this, string @value, bool includeValue = false)
-        {
-            int index = @this.IndexOf(@value);
-            if (index != -1)
-            {
-                return @this.Substring(index + (includeValue ? @value.Length : 0));
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static string? TrySubstringAfterFirst(this string @this, string @value, bool includeValue = false)
-        {
-            int index = @this.IndexOf(@value);
-            if (index != -1)
-            {
-                return @this.Substring(index + (includeValue ? 0 : @value.Length));
-            }
-            else
-            {
-                return null;
-            }
-        }
-        //endregion
-
-        //region This methods will return a user-specified default (either the empty string or the original input string, i.e. `@this`) if the value does not exist.
-        public static string SubstringBeforeFirstOrDefault(this string @this, string @value, bool includeValue = false, DefaultSubstring @default = DefaultSubstring.EmptyString)
-        {
-            int index = @this.IndexOf(@value);
-            if (index != -1)
-            {
-                return @this.Substring(index + (includeValue ? 0 : @value.Length));
-            }
-            else
-            {
-                return ResolveDefaultSubstring(@this, @default);
-            }
-        }
-
-        public static string SubstringAfterFirstOrDefault(this string @this, string @value, bool includeValue = false, DefaultString @default = DefaultSubstring.EmptyString)
-        {
-            int index = @this.IndexOf(@value);
-            if (index != -1)
-            {
-                return @this.Substring(index + (includeValue ? 0 : @value.Length));
-            }
-            else
-            {
-                return ResolveDefaultSubstring(@this, @default);
-            }
-        }
-        //endregion
-
-        //region These methods will throw an exception if the value does not exist.
-        // TODO standardize
-        public static string SubstringBeforeLast(this string @this, string @value, bool includeValue = false)
-                => @this.Substring(0, @this.LastIndexOf(@value) + (includeValue ? @value.Length : 0));
-        public static string SubstringAfterLast(this string @this, string @value, bool includeValue = false)
-                => @this.Substring(@this.LastIndexOf(@value) + (includeValue ? 0 : @value.Length));
-        //endregion
-
-        //region These methods will return null if the value does not exist.
-        // TODO refactor
-        public static string? TrySubstringBeforeLast(this string @this, string @value) => TryElse(() => @this.Substring(0, @this.LastIndexOf(@value)),              null);  // TODO includeValue parameter and logic
-        public static string? TrySubstringAfterLast(this string @this, string @value)  => TryElse(() => @this.Substring(@this.LastIndexOf(@value) = @value.Length), null);  // TODO includeValue parameter and logic
-        //endregion
-
-        //region This methods will return a user-specified default (either the empty string or the original input string, i.e. `@this`) if the value does not exist.
-        // TODO
-        //endregion
-
-        //region Argument Validators
-
-        private static void CheckArgumentRangeZero(int argument, string argumentName)
-        {
-            if (!(0 <= argument))
-            {
-                throw new ArgumentOutOfRangeException("{0} is less than 0 (zero).", argumentName);
-            }
-        }
-
-        private static void CheckArgumentRangeLength(int argument, string argumentName, int length, string lengthName)
-        {
-            if (!(argument <= length))
-            {
-                throw new ArgumentOutOfRangeException("{0} is greater than the length of {1}.", argumentName, lengthName);
-            }
-        }
-
-
-        //------
-
-        private static void CheckStartIndex(this string @this, int startIndex)
-        {
-            CheckArgumentRangeZero(startIndex, nameof(startIndex));
-            CheckArgumentRangeLength(startIndex, nameof(startIndex), @this.Length, "this string");
-        }
-
-        private static void CheckStartIndexCount(this string @this, int startIndex, int count)
-        {
-            CheckArgumentRangeZero(startIndex, nameof(startIndex));
-            CheckArgumentRangeZero(count, nameof(count));
-
-            CheckArgumentRangeLength(startIndex, nameof(startIndex), @this.Length, "this string");
-            CheckArgumentRangeLength(count, nameof(count), @this.Length - startIndex, $"this string minus {nameOf(startIndex)}");
-        }
-
-        private static string ValueNotFoundErrorMessage = "value was not found in this string.";
-
-        //endregion
-    }
-
-    public static class PSStringExtensions
-    {
-        public static string AddPrefix(PSObject @this, string value, string separator = "") => @this.ToString().AddPrefix(value, separator);
-        public static string AddPrefixIfAbsent(PSObject @this, string value, string separator = "") => @this.ToString().AddPrefixIfAbsent(value, separator);
-        public static string AddSuffix(PSObject @this, string value, string separator = "") => @this.ToString().AddSuffix(value, separator);
-        public static string AddSuffixIfAbsent(PSObject @this, string value, string separator = "") => @this.ToString().AddSuffixIfAbsent(value, separator);
-        public static string Remove(PSObject @this, string value) => @this.ToString().Remove(value);
-        public static string RemoveFirst(PSObject @this, string value) => @this.ToString().RemoveFirst(value);
-        public static string RemoveLast(PSObject @this, string value) => @this.ToString().RemoveLast(value);
-        public static string RemoveHead(PSObject @this, int length) => @this.ToString().RemoveHead(length);
-        public static string RemovePrefixIfPresent(PSObject @this, string value) => @this.ToString().RemovePrefixIfPresent(value);
-        public static string RemoveTail(PSObject @this, int length) => @this.ToString().RemoveTail(length);
-        public static string RemoveSuffixIfPresent(PSObject @this, string value) => @this.ToString().RemoveSuffixIfPresent(value);
-        public static string ReplaceHead(PSObject @this, int length, string newValue) => @this.ToString().ReplaceHead(length, newValue);
-        public static string ReplacePrefixIfPresent(PSObject @this, string oldValue, string newValue) => @this.ToString().ReplacePrefixIfPresent(oldValue, newValue);
-        public static string ReplaceTail(PSObject @this, int length, string newValue) => @this.ToString().ReplaceTail(length, newValue);
-        public static string ReplaceSuffixIfPresent(PSObject @this, string oldValue, string newValue) => @this.ToString().ReplaceSuffixIfPresent(oldValue, newValue);
-        public static string SubstringFrom(PSObject @this, string value) => @this.ToString().SubstringFrom(value);
-        public static string SubstringFromLast(PSObject @this, string value) => @this.ToString().SubstringFromLast(value);
-        public static string SubstringUntil(PSObject @this, string value) => @this.ToString().SubstringUntil(value);
-        public static string SubstringUntilLast(PSObject @this, string value) => @this.ToString().SubstringUntilLast(value);
-        public static string Head(PSObject @this, int length) => @this.ToString().Head(length);
-        public static string Tail(PSObject @this, int length) => @this.ToString().Tail(length);
-    }
+		#endregion
+	}
 }
