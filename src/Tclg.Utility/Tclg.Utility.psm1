@@ -6,6 +6,7 @@ $sources = @(
     'ArgumentList/New-ArgumentList.ps1'
 
     'Dictionary/New-Dictionary.ps1'
+    'Dictionary/New-DictionaryEntry.ps1'
     'Dictionary/Out-Dictionary.ps1'
 
     'Function/Export-Function.ps1'

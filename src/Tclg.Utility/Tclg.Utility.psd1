@@ -40,6 +40,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         'New-Dictionary'
         'Out-Dictionary'
 
+        'New-DictionaryEntry'
+
         'Export-Function'
         'Get-Function'
         'Import-Function'
@@ -72,6 +74,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
         'ndict'  # New-Dictionary
         'odict'  # Out-Dictionary
+
+        'New-Entry'  # New-DictionaryEntry
 
         'epf'  # Export-Function
         'gf'   # Get-Function
@@ -106,6 +110,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 'args'
                 'ArgumentList'
                 'Collections'
+                'Dictionary'
                 'Function'
                 'Hashtable'
                 'List'
@@ -133,8 +138,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 - Added public function New-ArgumentList with alias New-Args in module Tclg.Utility.
 - Added public function ConvertTo-ArgumentList with alias ConvertTo-Args in module Tclg.Utility.
+- Added public function New-DictionaryEntry with alias New-Entry in module Tclg.Utility.
 '@
-            Prerelease = '20210224'
+            Prerelease = '20210306'
 
             RequireLicenseAcceptance = $false
 
