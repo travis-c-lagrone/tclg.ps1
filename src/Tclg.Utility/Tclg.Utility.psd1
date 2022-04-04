@@ -121,8 +121,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 'Variable'
             )
 
-            LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/powershell-tclg/master/LICENSE.txt'
-            ProjectUri = 'https://github.com/travis-c-lagrone/powershell-tclg'
+            LicenseUri = 'https://raw.githubusercontent.com/travis-c-lagrone/tclg.ps1/master/LICENSE.txt'
+            ProjectUri = 'https://github.com/travis-c-lagrone/tclg.ps1'
             # IconUri = ''
 
             ReleaseNotes = @'
